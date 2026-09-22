@@ -10,7 +10,7 @@ OpenFlyScan uses the OpenFly Go applications for capture and reconstruction feed
 
 The apps remain separate private repositories under `mistletoe235`; their source
 links are also registered in `components.json`. Access requires a GitHub invitation.
-These links provide source code, not signed installation packages.
+These source links are separate from the signed-package release links below.
 Build keys and signing credentials must be supplied privately, never stored here.
 DJI HIL instructions are provided with the simulator; platform features are not
 assumed to be identical across Android V4/V5 and iOS.
@@ -20,6 +20,26 @@ recapture is selected; the default remains schema 13. Android's existing-session
 browser can show an unapproved route in a separate read-only diagram, without
 activating it. Import and execution approval remain distinct from downloading
 or viewing the route. See [the preparation report](preparation_20260921.md).
+
+## Installation packages
+
+Use the [main release](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922) or the matching app release:
+[Android V4](https://github.com/mistletoe235/OpenFlyGo-Android-V4/releases/tag/v0.3.1-v4),
+[Android V5](https://github.com/mistletoe235/OpenFlyGo-Android-V5/releases/tag/v0.1.1-v5).
+Both locations host the same signed APK bytes. Private repositories require access
+permission. Android packages target arm64 devices running Android 7.0 or later.
+Check the SDK/aircraft table before installing, preserve missions when updating,
+and do not bypass signature mismatches by deleting app data. Installation does not
+validate an aircraft/firmware combination or start a flight.
+
+### iOS TestFlight
+
+The iOS app is **not currently distributed on the App Store because of MFi-related
+authorization requirements** for the DJI accessory connection. Contact
+[@mistletoe235](https://github.com/mistletoe235) to request a **TestFlight invitation**;
+you can start with a [TestFlight access request](https://github.com/mistletoe235/OpenFlyGo-iOS/issues/new?title=TestFlight%20invitation%20request). Do not post your Apple ID,
+email address or other enrollment details in a public issue; arrange those details
+privately with the maintainer. No directly installable IPA is distributed here.
 
 ## SDK support and version differences
 
@@ -47,7 +67,8 @@ Public apps exclude MNN/VLN and private model runtimes, not the route/cloud work
 
 ## Basic workflow
 
-1. Build/install the correct client with your private DJI key and signing settings.
+1. Install the correct signed Android client from Releases, request iOS TestFlight access,
+   or build from source with your own DJI key and signing settings.
    Read its `README.md` for setup, camera checks, survey region and height/overlap settings.
 2. Validate routes with the client's `docs/HIL_QUICKSTART.md` and the
    [simulator guide](simulator.md). Xcode Mock is not DJI flight-controller HIL.

@@ -32,6 +32,51 @@ All five source repositories are private and require collaborator access:
 [UE / HIL](https://github.com/mistletoe235/OpenFlyScan-UE).
 GitHub source access and access to the private HF dataset are managed separately.
 
+## Download the apps
+
+Signed Android installation packages are mirrored in the
+[main project release](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922) and each app's release. The paired APKs are
+byte-identical; use either location, not both. These repositories and their release
+assets are currently private, so sign in with an authorized GitHub account.
+
+| Client | Installation package | App release | Reference aircraft |
+| --- | --- | --- | --- |
+| Android V4 | [OpenFlyGo-Android-V4-0.3.1.apk](https://github.com/mistletoe235/OpenFlyScan/releases/download/preview-20260922/OpenFlyGo-Android-V4-0.3.1.apk) | [v0.3.1-v4](https://github.com/mistletoe235/OpenFlyGo-Android-V4/releases/tag/v0.3.1-v4) | Mini 2 |
+| Android V5 | [OpenFlyGo-Android-V5-0.1.1.apk](https://github.com/mistletoe235/OpenFlyScan/releases/download/preview-20260922/OpenFlyGo-Android-V5-0.1.1.apk) | [v0.1.1-v5](https://github.com/mistletoe235/OpenFlyGo-Android-V5/releases/tag/v0.1.1-v5) | Mini 4 Pro |
+| iOS | TestFlight by invitation | [Access information](https://github.com/mistletoe235/OpenFlyGo-iOS/releases/tag/testflight-20260922) | Mini 2 |
+
+Android requires a supported arm64 device running Android 7.0 or later. Download
+the matching V4/V5 APK, allow installation from the browser/file manager if prompted,
+and install it. V4 and V5 are different SDK product lines, not interchangeable
+upgrades. Back up missions before updating; do not uninstall or erase app data to
+work around a signature mismatch or downgrade. SDK-supported aircraft are not all
+project-validated. See [client compatibility and setup](docs/apps.md).
+
+The release includes `SHA256SUMS`, package/source metadata and third-party notices.
+It contains survey/capture clients, not the private VLN/model-inference builds.
+Configure your own reachable workstation URL and access code for cloud features;
+no production workstation credentials are included. The large UE/Expo East runtime
+remains in the [HF dataset](https://huggingface.co/datasets/IPEC-COMMUNITY/openflyscan/tree/main/HIL-simulator).
+
+### iOS TestFlight
+
+The iOS app is **not currently distributed on the App Store because of MFi-related
+authorization requirements** for the DJI accessory connection. Contact
+[@mistletoe235](https://github.com/mistletoe235) to request a **TestFlight invitation**;
+you can start with a [TestFlight access request](https://github.com/mistletoe235/OpenFlyGo-iOS/issues/new?title=TestFlight%20invitation%20request). Do not post your Apple ID,
+email address or other enrollment details in a public issue; arrange those details
+privately with the maintainer. No directly installable IPA is distributed here.
+
+### App safety notes
+
+> [!WARNING]
+> **Before using the apps:** rehearse the complete route, capture, pause/resume and completion workflow in the built-in simulator before every real flight. If available, use UE HIL as an additional check; remove propellers and confirm DJI Simulator activation before bench control tests.
+>
+> Check building/tree/wire clearance, transit and return paths, altitude datum, positioning and control/video signals. Consumer drones do not all provide omnidirectional obstacle sensing: enable and verify available obstacle avoidance, keep safe clearance and **do not use Sport/S mode**.
+>
+> Exit simulation and restore the real camera before real flight. Keep the pilot ready to pause or take over, follow local flight rules, and keep V4/iOS foreground and connected. Downloading a route or passing simulation does not authorize flight or establish real-flight safety.
+
+
 ## Install
 
 For a self-contained CPU check, start with the [quick start](docs/quickstart.md).
