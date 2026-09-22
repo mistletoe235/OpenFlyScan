@@ -1,0 +1,60 @@
+{
+  "project": "OpenFlyScan",
+  "website": "https://openflyscan.github.io/",
+  "assets": {
+    "repo_id": "IPEC-COMMUNITY/openflyscan",
+    "repo_type": "dataset",
+    "visibility": "private",
+    "simulator_directory": "HIL-simulator/linux/v0.1.0"
+  },
+  "components": {
+    "quality_predictor": {
+      "repository": "main",
+      "checkpoint": "weights/quality_predictor.pt",
+      "example_directory": "examples/quality_predictor",
+      "manifest": "configs/quality_predictor.release.json"
+    },
+    "workstation": {
+      "repository": "main",
+      "status": "deployed and replay-verified on dsw1, 2026-09-21",
+      "guide": "docs/workstation.md",
+      "modules": [
+        "openflyscan/server",
+        "openflyscan/reconstruction",
+        "openflyscan/planning",
+        "openflyscan/missions"
+      ],
+      "mission_schemas": {
+        "stop_and_capture": 13,
+        "continuous_experimental": 14
+      }
+    }
+  },
+  "repositories": {
+    "main": {
+      "url": "https://github.com/mistletoe235/OpenFlyScan",
+      "visibility": "private",
+      "status": "private source repository"
+    },
+    "android_v4": {
+      "url": "https://github.com/mistletoe235/OpenFlyGo-Android-V4",
+      "visibility": "private",
+      "status": "private source repository"
+    },
+    "android_v5": {
+      "url": "https://github.com/mistletoe235/OpenFlyGo-Android-V5",
+      "visibility": "private",
+      "status": "private source repository"
+    },
+    "ios": {
+      "url": "https://github.com/mistletoe235/OpenFlyGo-iOS",
+      "visibility": "private",
+      "status": "private source repository"
+    },
+    "ue": {
+      "url": "https://github.com/mistletoe235/OpenFlyScan-UE",
+      "visibility": "private",
+      "status": "private source repository"
+    }
+  }
+}

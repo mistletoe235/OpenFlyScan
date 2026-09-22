@@ -1,0 +1,102 @@
+{
+  "root": "${DEPENDENCY_ROOT}",
+  "input_policy": {
+    "model": "pi3x",
+    "pose": "input",
+    "ray": "input",
+    "depth": "none"
+  },
+  "dino_manifest": "${DATA_ROOT}/dino/manifest.json",
+  "records": [
+    {
+      "scene": "train_01",
+      "physical_scene_id": "train_01",
+      "split": "train",
+      "views": 30,
+      "source": "${DATA_ROOT}/train_01/source",
+      "full_root": "${DATA_ROOT}/train_01/base",
+      "evaluation": "${DATA_ROOT}/train_01/teacher",
+      "footprints": "${DATA_ROOT}/train_01/footprints.npz"
+    },
+    {
+      "scene": "train_02",
+      "physical_scene_id": "train_02",
+      "split": "train",
+      "views": 30,
+      "source": "${DATA_ROOT}/train_02/source",
+      "full_root": "${DATA_ROOT}/train_02/base",
+      "evaluation": "${DATA_ROOT}/train_02/teacher",
+      "footprints": "${DATA_ROOT}/train_02/footprints.npz"
+    },
+    {
+      "scene": "train_03",
+      "physical_scene_id": "train_03",
+      "split": "train",
+      "views": 30,
+      "source": "${DATA_ROOT}/train_03/source",
+      "full_root": "${DATA_ROOT}/train_03/base",
+      "evaluation": "${DATA_ROOT}/train_03/teacher",
+      "footprints": "${DATA_ROOT}/train_03/footprints.npz"
+    },
+    {
+      "scene": "train_04",
+      "physical_scene_id": "train_04",
+      "split": "train",
+      "views": 30,
+      "source": "${DATA_ROOT}/train_04/source",
+      "full_root": "${DATA_ROOT}/train_04/base",
+      "evaluation": "${DATA_ROOT}/train_04/teacher",
+      "footprints": "${DATA_ROOT}/train_04/footprints.npz"
+    },
+    {
+      "scene": "train_05",
+      "physical_scene_id": "train_05",
+      "split": "train",
+      "views": 30,
+      "source": "${DATA_ROOT}/train_05/source",
+      "full_root": "${DATA_ROOT}/train_05/base",
+      "evaluation": "${DATA_ROOT}/train_05/teacher",
+      "footprints": "${DATA_ROOT}/train_05/footprints.npz"
+    },
+    {
+      "scene": "train_06",
+      "physical_scene_id": "train_06",
+      "split": "train",
+      "views": 30,
+      "source": "${DATA_ROOT}/train_06/source",
+      "full_root": "${DATA_ROOT}/train_06/base",
+      "evaluation": "${DATA_ROOT}/train_06/teacher",
+      "footprints": "${DATA_ROOT}/train_06/footprints.npz"
+    },
+    {
+      "scene": "train_07",
+      "physical_scene_id": "train_07",
+      "split": "train",
+      "views": 30,
+      "source": "${DATA_ROOT}/train_07/source",
+      "full_root": "${DATA_ROOT}/train_07/base",
+      "evaluation": "${DATA_ROOT}/train_07/teacher",
+      "footprints": "${DATA_ROOT}/train_07/footprints.npz"
+    },
+    {
+      "scene": "train_08",
+      "physical_scene_id": "train_08",
+      "split": "train",
+      "views": 30,
+      "source": "${DATA_ROOT}/train_08/source",
+      "full_root": "${DATA_ROOT}/train_08/base",
+      "evaluation": "${DATA_ROOT}/train_08/teacher",
+      "footprints": "${DATA_ROOT}/train_08/footprints.npz"
+    },
+    {
+      "scene": "validation_01",
+      "physical_scene_id": "validation_01",
+      "split": "validation",
+      "views": 30,
+      "source": "${DATA_ROOT}/validation_01/source",
+      "full_root": "${DATA_ROOT}/validation_01/base",
+      "evaluation": "${DATA_ROOT}/validation_01/teacher",
+      "footprints": "${DATA_ROOT}/validation_01/footprints.npz"
+    }
+  ]
+}

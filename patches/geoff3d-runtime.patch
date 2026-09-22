@@ -1,0 +1,498 @@
+diff --git a/configs/slrf.yaml b/configs/slrf.yaml
+index 091c049..0cd9cab 100644
+--- a/configs/slrf.yaml
++++ b/configs/slrf.yaml
+@@ -26,6 +26,28 @@ spatial_partition: footprint_tree
+ # prior: compute footprints from matching cams/*.txt and metric depth/*.exr.
+ # sequential: estimate footprints with a preliminary ordered model pass.
+ footprint_estimation: sequential
++# Optional reusable cache for sequentially estimated footprints. The cache is
++# accepted only when its ordered image stems exactly match the current scene.
++footprint_cache_path: null
++# Generate/validate the footprint cache and stop before spatial reconstruction.
++footprint_only: false
++# Build and save the exact spatial chunk plan, then stop before model loading.
++# This is useful for auditing view composition before an expensive run.
++chunk_plan_only: false
++# Optional embarrassingly-parallel prediction mode. Every worker loads the
++# same complete chunk plan but predicts only chunk_id % worker_count == index.
++# Use separate cache/output directories, merge their manifests and NPZ files,
++# then run one coordinator with reuse_chunk_cache_dir.
++prediction_only: false
++prediction_worker_index: 0
++prediction_worker_count: 1
++# Optional reusable JSON chunk plan. If it exists, spatial partitioning is
++# skipped and the exact saved chunks/overlaps/alignment tree are restored.
++# A previous output directory or its result.json may also be supplied.
++chunk_plan_path: null
++# Optional chunk_cache directory from a compatible completed run. Requires the
++# v2 manifest and skips model initialization/inference entirely.
++reuse_chunk_cache_dir: null
+ max_chunk_size: 32
+ min_chunk_size: 8
+ max_chunks: 0
+@@ -38,12 +60,18 @@ chunk_order: spatial_center_bfs
+ # Prior and alignment policy
+ # Pi3X only. choices: input, none
+ pose_prior: input
++# When trusted poses are provided to Pi3X, use them to place the predicted
++# camera-frame point maps in the world instead of re-predicting those poses.
++# Pi3X's pose branch is a soft attention condition; its camera head is not a
++# hard pose constraint.
++pi3x_anchor_output_to_input_pose: false
+ # GeoFF3D only. Required value: input
+ translation_prior: input
+ # GeoFF3D only. choices: input, none
+ rotation_prior: input
+-# GeoFF3D and Pi3X. choices: input, pred, none
+-ray_prior: pred
++# GeoFF3D and Pi3X. choices: auto, input, pred, none.  ``auto`` uses camera
++# intrinsics when present and bootstraps them from chunk 0 only when absent.
++ray_prior: auto
+ # pred: use model-predicted seam depth; none: disable the depth prior.
+ # Only input requires a depth/ directory for the depth-prior path.
+ depth_prior: pred
+@@ -68,6 +96,29 @@ post_chunk_align_spatial_balance: true
+ post_chunk_align_workers: 2
+ compute_seam_error: true
+ seam_error_max_points_per_edge: 20000
++keep_chunk_cache: false
++# Compressed NPZ is smaller but expensive for dense floating-point maps. For
++# node-local transient caches, false is substantially faster and lossless.
++chunk_cache_compressed: true
++chunk_cache_writer_workers: 1
++chunk_cache_max_pending: 0
++# Store only arrays required by alignment and the full-map audit export. This
++# is valid when the optional RRD/mesh/BA/GS/DOM outputs are disabled.
++chunk_cache_compact: false
++# Optional node-local directory for transient window predictions.  Final
++# products remain under output_path; this directory is removed after export.
++transient_chunk_cache_dir: null
++# Persist post-aligned core-view point maps and raw (unthresholded) confidence
++# as the final full-map audit product.  Transient caches can then be deleted.
++export_full_map_bundle: false
++# Per-window colored PLYs duplicate the final full-map product and are disabled
++# for storage-bounded batch runs.
++log_chunks_rrd: true
++save_standard_outputs: true
++full_map_overview_max_points: 2000000
++# Uncompressed shards write much faster and are still standard NPZ files.
++# Keep true for archival runs; use false for fast local production runs.
++full_map_shards_compressed: true
+ 
+ 
+ # Aligned reconstruction evaluation (runs automatically after reconstruction).
+diff --git a/geoff3d/models/external/pi3/models/pi3x.py b/geoff3d/models/external/pi3/models/pi3x.py
+index 11ba2aa..5d08875 100644
+--- a/geoff3d/models/external/pi3/models/pi3x.py
++++ b/geoff3d/models/external/pi3/models/pi3x.py
+@@ -288,11 +288,14 @@ class Pi3X(nn.Module, PyTorchModelHubMixin):
+         rays=None,
+         poses=None,
+         pose_mask=None,
++        depth_mask=None,
++        ray_mask=None,
+         with_prior=None,
+         overall_prob=1.0,
+         ray_dirs_prob=0.0,
+         depth_prob=0.0,
+         cam_prob=0.0,
++        return_pi3x_features=False,
+     ):
+         """
+         Forward pass with optional multimodal conditions.
+@@ -312,12 +315,12 @@ class Pi3X(nn.Module, PyTorchModelHubMixin):
+             depths (torch.Tensor, optional): Ground truth or prior depth maps.
+                 Shape: (B, N, H, W).
+                 Invalid values (e.g., sky or missing data) should be set to 0.
+-            mask_add_depth (torch.Tensor, optional): Mask for depth condition.
+-                Shape: (B, N, N).
+-            mask_add_ray (torch.Tensor, optional): Mask for ray/intrinsic condition.
+-                Shape: (B, N, N).
+-            mask_add_pose (torch.Tensor, optional): Mask for pose condition.
+-                Shape: (B, N, N).
++            depth_mask (torch.Tensor, optional): Per-view mask for depth condition.
++                Shape: (B, N).
++            ray_mask (torch.Tensor, optional): Per-view mask for ray/intrinsic condition.
++                Shape: (B, N).
++            pose_mask (torch.Tensor, optional): Per-view mask for pose condition.
++                Shape: (B, N).
+                 Note: Requires at least two frames to be True to establish a meaningful
+                 coordinate system (absolute pose for a single frame provides no relative constraint).
+ 
+@@ -337,6 +340,8 @@ class Pi3X(nn.Module, PyTorchModelHubMixin):
+             intrinsics=intrinsics,
+             poses=poses,
+             pose_mask=pose_mask,
++            depth_mask=depth_mask,
++            ray_mask=ray_mask,
+             rays=rays,
+             overall_prob=overall_prob,
+             ray_dirs_prob=ray_dirs_prob,
+@@ -350,6 +355,10 @@ class Pi3X(nn.Module, PyTorchModelHubMixin):
+ 
+         # # head
+         outputs = self.forward_head(hidden, pos, B, N, H, W, patch_h, patch_w)
++        # Preserve the scale used to normalize pose/depth priors.  Downstream
++        # known-pose reconstruction needs this to map camera-frame geometry
++        # back to the metric scale of the supplied camera trajectory.
++        outputs["prior_norm_factor"] = norm_factor
+ 
+         return outputs
+     
+@@ -362,6 +371,8 @@ class Pi3X(nn.Module, PyTorchModelHubMixin):
+         intrinsics=None,
+         poses=None,
+         pose_mask=None,
++        depth_mask=None,
++        ray_mask=None,
+         overall_prob=1.0,
+         ray_dirs_prob=0.0,
+         depth_prob=0.0,
+@@ -416,8 +427,23 @@ class Pi3X(nn.Module, PyTorchModelHubMixin):
+                 else:
+                     assert rays is not None                     # rays should be along with poses
+                     
+-                mask_add_depth = torch.rand((B, N), device=device) <= p_depth
+-                mask_add_ray = torch.rand((B, N), device=device) <= p_ray
++                if depth_mask is not None:
++                    if depth_mask.shape != (B, N):
++                        raise ValueError(
++                            f"depth_mask must have shape {(B, N)}, got {tuple(depth_mask.shape)}"
++                        )
++                    mask_add_depth = depth_mask.to(device=device, dtype=torch.bool)
++                else:
++                    mask_add_depth = torch.rand((B, N), device=device) <= p_depth
++
++                if ray_mask is not None:
++                    if ray_mask.shape != (B, N):
++                        raise ValueError(
++                            f"ray_mask must have shape {(B, N)}, got {tuple(ray_mask.shape)}"
++                        )
++                    mask_add_ray = ray_mask.to(device=device, dtype=torch.bool)
++                else:
++                    mask_add_ray = torch.rand((B, N), device=device) <= p_ray
+                 if pose_mask is not None:
+                     if pose_mask.shape != (B, N):
+                         raise ValueError("pose_mask must have shape [B, N]")
+@@ -432,7 +458,13 @@ class Pi3X(nn.Module, PyTorchModelHubMixin):
+ 
+                 # normalize depth and pose
+                 normalized_depths, dep_median = self.normalize_depth(depths, method='mean')
+-                scale_aug = 0.8 + torch.rand((B,), device=device) * 0.4
++                # Scale augmentation belongs to training only. Keeping it active
++                # during inference makes identical views change metric scale solely
++                # because they are evaluated in a different chunk.
++                if self.training:
++                    scale_aug = 0.8 + torch.rand((B,), device=device) * 0.4
++                else:
++                    scale_aug = torch.ones((B,), device=device)
+                 normalized_depths /= scale_aug.view(B, 1, 1, 1)
+                 dep_median *= scale_aug
+ 
+@@ -467,7 +499,10 @@ class Pi3X(nn.Module, PyTorchModelHubMixin):
+                         is_static_mask = pose_scale_per_view.max(dim=1)[0] < static_threshold
+                         pose_scale = pose_scale_per_view.mean(dim=1)
+                         has_pose_baseline = torch.ones(B, dtype=torch.bool, device=device)
+-                    scale_aug = 0.8 + torch.rand((B,), device=device) * 0.4
++                    if self.training:
++                        scale_aug = 0.8 + torch.rand((B,), device=device) * 0.4
++                    else:
++                        scale_aug = torch.ones((B,), device=device)
+                     pose_scale *= scale_aug
+ 
+                     final_moving_mask = (
+diff --git a/geoff3d/models/external/pi3x/__init__.py b/geoff3d/models/external/pi3x/__init__.py
+index 59eb399..508bf74 100644
+--- a/geoff3d/models/external/pi3x/__init__.py
++++ b/geoff3d/models/external/pi3x/__init__.py
+@@ -118,6 +118,7 @@ class Pi3XWrapper(torch.nn.Module):
+                     "cam_trans": curr_view_cam_translations,
+                     "cam_quats": curr_view_cam_quats,
+                     "conf": curr_view_confidence,
++                    "prior_norm_factor": results.get("prior_norm_factor"),
+                 }
+             )
+         return res
+@@ -183,6 +184,7 @@ class Pi3XWrapper(torch.nn.Module):
+             "ray_dirs_prob": ray_dirs_prob,
+             "depth_prob": depth_prob,
+             "cam_prob": cam_prob,
++            "return_pi3x_features": bool(getattr(self, "return_pi3x_features", False)),
+         }
+ 
+         # Remove None tensors, but keep scalar probabilities.
+@@ -201,4 +203,9 @@ class Pi3XWrapper(torch.nn.Module):
+             results = self.model(**model_kwargs)
+ 
+         with torch.autocast("cuda", enabled=False):
+-            return self._convert_outputs(results, num_views)
++            converted = self._convert_outputs(results, num_views)
++            feature_maps = results.get("pi3x_patch_features")
++            if feature_maps is not None:
++                for index, pred in enumerate(converted):
++                    pred["pi3x_patch_features"] = feature_maps[:, index]
++            return converted
+diff --git a/geoff3d/slrf/chunk_cache.py b/geoff3d/slrf/chunk_cache.py
+index c20c3be..c846a0c 100644
+--- a/geoff3d/slrf/chunk_cache.py
++++ b/geoff3d/slrf/chunk_cache.py
+@@ -23,6 +23,7 @@ ARRAY_KEYS = {
+     "_pred_maps",
+     "_pred_valid_masks",
+     "_pred_valid_masks_unmasked",
++    "_pred_confidence",
+     "rgbs",
+     "_chunk_intrinsics",
+     "_chunk_point_local_indices",
+@@ -73,7 +74,7 @@ def _build_payload(arrays: Mapping[str, object]) -> Dict[str, object]:
+     for key, value in arrays.items():
+         if value is None:
+             continue
+-        if key in {"_pred_maps", "_pred_valid_masks", "_pred_valid_masks_unmasked", "rgbs", "_chunk_intrinsics"}:
++        if key in {"_pred_maps", "_pred_valid_masks", "_pred_valid_masks_unmasked", "_pred_confidence", "rgbs", "_chunk_intrinsics"}:
+             payload[key] = _pack_sequence(value)  # type: ignore[arg-type]
+         elif key in {"_chunk_point_local_indices", "_core_local_indices"}:
+             payload[key] = _as_int_array(value)  # type: ignore[arg-type]
+@@ -95,18 +96,24 @@ def _prepare_record_for_cache(
+     return path
+ 
+ 
+-def _write_chunk_cache_npz(path: Path, arrays: Mapping[str, object]) -> None:
++def _write_chunk_cache_npz(
++    path: Path,
++    arrays: Mapping[str, object],
++    compressed: bool = True,
++) -> None:
+     payload = _build_payload(arrays)
+-    np.savez(path, **payload)
++    writer = np.savez_compressed if compressed else np.savez
++    writer(path, **payload)
+ 
+ 
+ def save_chunk_cache(
+     record: Dict[str, object],
+     cache_dir: Path,
+     arrays: Mapping[str, object],
++    compressed: bool = True,
+ ) -> Path:
+     path = _prepare_record_for_cache(record, cache_dir, arrays)
+-    _write_chunk_cache_npz(path, arrays)
++    _write_chunk_cache_npz(path, arrays, compressed)
+     return path
+ 
+ 
+@@ -118,6 +125,7 @@ class AsyncChunkCacheWriter:
+         cache_dir: Path,
+         max_workers: int = 1,
+         max_pending: int = 0,
++        compressed: bool = True,
+     ) -> None:
+         self.cache_dir = Path(cache_dir)
+         self.cache_dir.mkdir(parents=True, exist_ok=True)
+@@ -125,6 +133,7 @@ class AsyncChunkCacheWriter:
+         if max_pending <= 0:
+             max_pending = max(1, self.max_workers)
+         self.max_pending = max(1, int(max_pending))
++        self.compressed = bool(compressed)
+         self._executor: Optional[ThreadPoolExecutor] = None
+         self._pending: List[Future[None]] = []
+         if self.max_workers > 0:
+@@ -141,13 +150,20 @@ class AsyncChunkCacheWriter:
+         arrays = dict(arrays)
+         path = _prepare_record_for_cache(record, self.cache_dir, arrays)
+         if self._executor is None:
+-            _write_chunk_cache_npz(path, arrays)
++            _write_chunk_cache_npz(path, arrays, self.compressed)
+             return path
+ 
+         self._raise_finished()
+         while len(self._pending) >= self.max_pending:
+             self._drain_one()
+-        self._pending.append(self._executor.submit(_write_chunk_cache_npz, path, arrays))
++        self._pending.append(
++            self._executor.submit(
++                _write_chunk_cache_npz,
++                path,
++                arrays,
++                self.compressed,
++            )
++        )
+         return path
+ 
+     def _raise_finished(self) -> None:
+@@ -258,6 +274,19 @@ def strip_array_payload(record: Dict[str, object]) -> None:
+ def write_chunk_record_manifest(records: Sequence[Mapping[str, object]], path: Path) -> None:
+     path = Path(path)
+     path.parent.mkdir(parents=True, exist_ok=True)
++    def jsonable(value):
++        if isinstance(value, np.ndarray):
++            return value.tolist()
++        if isinstance(value, np.generic):
++            return value.item()
++        if isinstance(value, Path):
++            return str(value)
++        if isinstance(value, Mapping):
++            return {str(k): jsonable(v) for k, v in value.items()}
++        if isinstance(value, (list, tuple)):
++            return [jsonable(v) for v in value]
++        return value
++
+     payload = []
+     for record in records:
+         payload.append(
+@@ -272,6 +301,30 @@ def write_chunk_record_manifest(records: Sequence[Mapping[str, object]], path: P
+                 "alignment_topology": record.get("alignment_topology", None),
+                 "align_parent_id": record.get("align_parent_id", None),
+                 "align_level": int(record.get("align_level", 0)),
++                "partition": record.get("partition", None),
++                "cell_key": list(record.get("cell_key", [])),
++                "stems": list(record.get("stems", [])),
++                "core_stems": list(record.get("core_stems", [])),
++                "overlap_stems": list(record.get("overlap_stems", [])),
++                "num_seam_candidates": int(record.get("num_seam_candidates", 0)),
++                "num_dropped_seam_images": int(record.get("num_dropped_seam_images", 0)),
++                "num_depth_priors_used": int(record.get("num_depth_priors_used", 0)),
++                "pred_cams": jsonable(record.get("pred_cams", [])),
++                "align_meta": jsonable(record.get("align_meta", {})),
++                "depth_conf_filter_meta": jsonable(
++                    record.get("depth_conf_filter_meta", {})
++                ),
++                "gsplat_meta": jsonable(record.get("gsplat_meta", {})),
++                "num_chunk_pred_points_raw": int(
++                    record.get("num_chunk_pred_points_raw", 0)
++                ),
++                "num_chunk_pred_points_filtered": int(
++                    record.get("num_chunk_pred_points_filtered", 0)
++                ),
++                "num_chunk_pred_points_refined": int(
++                    record.get("num_chunk_pred_points_refined", 0)
++                ),
++                "num_core_pred_points": int(record.get("num_core_pred_points", 0)),
+                 "chunk_cache_path": record.get("chunk_cache_path", None),
+                 "chunk_cache_keys": list(record.get("chunk_cache_keys", [])),
+                 "post_chunk_align_transform": record.get(
+diff --git a/geoff3d/slrf/chunking.py b/geoff3d/slrf/chunking.py
+index a5df18c..651a852 100644
+--- a/geoff3d/slrf/chunking.py
++++ b/geoff3d/slrf/chunking.py
+@@ -455,7 +455,11 @@ def footprint_features_from_meta(
+     )
+     source_requested = str(footprint_source)
+     counts = {"prior": 0, "lookat": 0, "center": 0, "predicted": 0}
+-    if source_requested in {"prior", "sequential"}:
++    # ``run_slrf.py`` labels a successfully loaded reusable sequential cache
++    # as ``sequential_cache``.  Treat it exactly like freshly estimated
++    # sequential footprints; otherwise the cache is silently ignored and the
++    # code falls back to pose look-at points.
++    if source_requested in {"prior", "sequential", "sequential_cache"}:
+         estimated = meta.get("estimated_footprints", {})
+         centers = np.asarray(estimated.get("centers", []), dtype=np.float64)
+         bbox_mins = np.asarray(estimated.get("bbox_mins", []), dtype=np.float64)
+diff --git a/geoff3d/slrf/depth_confidence.py b/geoff3d/slrf/depth_confidence.py
+index a98c789..7f5ce7f 100644
+--- a/geoff3d/slrf/depth_confidence.py
++++ b/geoff3d/slrf/depth_confidence.py
+@@ -77,6 +77,20 @@ def _tensor_bool_to_np(mask: torch.Tensor) -> np.ndarray:
+     return mask.detach().to(dtype=torch.bool).cpu().numpy()
+ 
+ 
++def extract_raw_confidence_maps(
++    preds: Sequence[Dict[str, torch.Tensor]],
++) -> List[np.ndarray]:
++    """Return unthresholded per-pixel confidence for every predicted view."""
++    maps: List[np.ndarray] = []
++    for pred in preds:
++        conf = _pred_tensor_hw_map(pred.get("conf"), reduce_channels=True)
++        if conf is None:
++            maps.append(np.empty((0, 0), dtype=np.float16))
++        else:
++            maps.append(_tensor_to_np_float(conf).astype(np.float16))
++    return maps
++
++
+ def apply_optional_keep_masks_to_valid_masks(
+     pred_valid_masks: Sequence[np.ndarray],
+     keep_masks: Optional[Sequence[Optional[np.ndarray]]],
+@@ -340,4 +354,3 @@ def apply_depth_confidence_filter_to_preds(
+         "note": "confidence filtering is stored as masks; original predicted depth/points are preserved",
+     }, keep_masks
+ 
+-
+diff --git a/geoff3d/slrf/model_runner.py b/geoff3d/slrf/model_runner.py
+index 76b919f..34a5c4d 100644
+--- a/geoff3d/slrf/model_runner.py
++++ b/geoff3d/slrf/model_runner.py
+@@ -266,6 +266,18 @@ def build_prior_overrides(model: str, policy: Dict[str, object]) -> List[str]:
+         add_prob("world_translation_prob", use_t)
+         add_prob("world_rotation_prob", use_r)
+ 
++    # Pi3X consumes the complete camera pose through its multimodal camera
++    # branch.  The default Pi3X config is images_only, so setting
++    # pose_prior=input must explicitly enable both the camera branch and the
++    # global conditioning gate; otherwise camera_pose is loaded but silently
++    # ignored by Pi3X.forward().
++    if model == "pi3x":
++        use_pose = policy.get("pose") == "input"
++        use_ray = policy.get("ray") == "input"
++        use_depth = policy.get("depth") == "input"
++        add_prob("cam_prob", use_pose)
++        add_prob("overall_prob", use_pose or use_ray or use_depth)
++
+     # ray/depth：对支持的模型显式打开或关闭
+     if model in {"geoff3d", "pi3x"}:
+         add_prob("ray_dirs_prob", policy.get("ray") == "input")
+@@ -289,6 +301,15 @@ def apply_runtime_prior_policy(model: torch.nn.Module, policy: Dict[str, object]
+ 
+     set_model_task_prob(model, "ray_dirs_prob", policy.get("ray") == "input")
+     set_model_task_prob(model, "depth_prob", policy.get("depth") == "input")
++    if model_name == "pi3x":
++        use_pose = policy.get("pose") == "input"
++        use_any_prior = (
++            use_pose
++            or policy.get("ray") == "input"
++            or policy.get("depth") == "input"
++        )
++        set_model_task_prob(model, "cam_prob", use_pose)
++        set_model_task_prob(model, "overall_prob", use_any_prior)
+     set_model_task_prob(model, "world_translation_prob", policy.get("translation") == "input")
+     set_model_task_prob(model, "world_rotation_prob", policy.get("rotation") == "input")
+ 
+diff --git a/geoff3d/slrf/rrd_writer.py b/geoff3d/slrf/rrd_writer.py
+index 76c9d4f..cf82884 100644
+--- a/geoff3d/slrf/rrd_writer.py
++++ b/geoff3d/slrf/rrd_writer.py
+@@ -1015,8 +1015,13 @@ def save_spatial_rrd(
+     gt_points, gt_colors = voxel_downsample(gt_points, gt_colors, voxel_size)
+     all_gt_cams = gt_cameras_for_stems(meta, meta["stems"])
+     effective_voxel_size = float(voxel_size)
+-    per_chunk_cap = max(1, int(max_points_per_view // max(1, len(chunk_records))))
+-    per_chunk_cap = max(per_chunk_cap, 50000)
++    # The final aggregate is capped by ``max_points_per_view`` below.  A fixed
++    # 50k-per-chunk floor made large scenes read and voxelize tens of millions
++    # of points only to discard nearly all of them afterwards.
++    per_chunk_cap = max(
++        256,
++        int(np.ceil(max_points_per_view / max(1, len(chunk_records)))),
++    )
+ 
+     aggregate_points, aggregate_colors = aggregate_core_points_streaming(
+         chunk_records=chunk_records,
+@@ -1033,7 +1038,7 @@ def save_spatial_rrd(
+         chunk_records=chunk_records,
+         base_points=aggregate_points,
+         grid_size=fill_grid_size,
+-        max_points_per_chunk=XY_FILL_MAX_POINTS_PER_CHUNK,
++        max_points_per_chunk=min(XY_FILL_MAX_POINTS_PER_CHUNK, per_chunk_cap),
+         voxel_size=effective_voxel_size,
+         seed=seed + 2027,
+     )
+@@ -1072,7 +1077,7 @@ def save_spatial_rrd(
+         [cam for record in chunk_records for cam in get_transformed_cameras(record)]
+     )
+     post_align_enabled = any(
+-        bool(record.get("post_chunk_align_meta", {}).get("enabled", False))
++        bool((record.get("post_chunk_align_meta") or {}).get("enabled", False))
+         for record in chunk_records
+     )
+ 

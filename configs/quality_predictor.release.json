@@ -1,0 +1,43 @@
+{
+  "schema": "openflyscan.quality_predictor_assets.v1",
+  "date": "2026-09-21",
+  "parameters": 1252725,
+  "checkpoint_schema": "head_training_v3_checkpoint",
+  "prediction_equivalence": "bitwise identical CPU outputs on the included sample",
+  "sample": {
+    "scene": "Expo West",
+    "observation_state": "before reacquisition",
+    "region_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "purpose": "real-feature inference example, not an evaluation set"
+  },
+  "files": {
+    "expo_west_sample_scores.npy": {
+      "bytes": 160,
+      "sha256": "b2298f72b5a7728859185f664dc74ec4bfe38690030c410c69829f363001b96a",
+      "repository_path": "examples/quality_predictor/expo_west_sample_scores.npy"
+    },
+    "expo_west_sample_inputs.npz": {
+      "bytes": 595804,
+      "sha256": "983a3f8c09e28ee8b4d99290703855836a7d4aaa1fc3b0633607675a7df6f3bc",
+      "repository_path": "examples/quality_predictor/expo_west_sample_inputs.npz"
+    },
+    "quality_predictor.pt": {
+      "bytes": 5050090,
+      "sha256": "b91a61a841f978c895431a2cac3aa609da6aaf0cf7ec352ca4f8b0dc93692824",
+      "repository_path": "weights/quality_predictor.pt"
+    }
+  },
+  "publication_status": "included in local repository; pending source publication",
+  "distribution": "main repository",
+  "license": "Apache-2.0",
+  "license_scope": "OpenFlyScan head and bundled example arrays; excludes external backbone weights and datasets"
+}

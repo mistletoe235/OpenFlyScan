@@ -1,0 +1,337 @@
+{
+  "schema": "openflyscan.release_assets.v1",
+  "date": "2026-09-21",
+  "hf_repository": "IPEC-COMMUNITY/openflyscan",
+  "hf_repository_type": "dataset",
+  "release_scope": "GS reconstructions of all datasets used by the project; no separate model repository",
+  "inventory_scope": "Existing GS candidates for upload; paper-by-paper reconciliation is not a release task",
+  "simulator": {
+    "path": "HIL-simulator/linux/v0.1.0/OpenFlyScan-HIL-ExpoEast-Linux-v0.1.0.tar.zst",
+    "status": "private upload recorded",
+    "standalone_ply_included": false
+  },
+  "quality_predictor": {
+    "path": "weights/quality_predictor.pt",
+    "status": "included in local repository with real-feature example",
+    "manifest": "configs/quality_predictor.release.json",
+    "repository": "main",
+    "license": "Apache-2.0"
+  },
+  "gs_candidates": [
+    {
+      "id": "expo-east",
+      "gallery_label": "Expo East",
+      "exists": true,
+      "size_bytes": 2802393845,
+      "sh_degree": 3,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "8eb2db",
+      "gallery_label": "High-rise housing",
+      "exists": true,
+      "size_bytes": 478112769,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "expo-west",
+      "gallery_label": "Expo West \u00b7 After",
+      "exists": true,
+      "size_bytes": 532769333,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "skylume-town",
+      "gallery_label": "Town",
+      "exists": true,
+      "size_bytes": 552239705,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "skylume-moon-bay-finite",
+      "gallery_label": "Moon Bay",
+      "exists": true,
+      "size_bytes": 406883993,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "53ce70",
+      "gallery_label": "Campus",
+      "exists": true,
+      "size_bytes": 523267149,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "dishui-lake",
+      "gallery_label": "Dishui Lake",
+      "exists": true,
+      "size_bytes": 2970760053,
+      "sh_degree": 3,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "01161",
+      "gallery_label": "UAVFF3D \u00b7 01161",
+      "exists": true,
+      "size_bytes": 499424173,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "81e073",
+      "gallery_label": "UAVFF3D \u00b7 81e073",
+      "exists": true,
+      "size_bytes": 498853857,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "979f6a",
+      "gallery_label": "UAVFF3D \u00b7 979f6a",
+      "exists": true,
+      "size_bytes": 474689785,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "9e07c9",
+      "gallery_label": "UAVFF3D \u00b7 9e07c9",
+      "exists": true,
+      "size_bytes": 485575021,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "b6124f",
+      "gallery_label": "UAVFF3D \u00b7 b6124f",
+      "exists": true,
+      "size_bytes": 440477149,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "64b098",
+      "gallery_label": "UAVFF3D \u00b7 64b098",
+      "exists": true,
+      "size_bytes": 521535733,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "c83595",
+      "gallery_label": "UAVFF3D \u00b7 c83595",
+      "exists": true,
+      "size_bytes": 501201625,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "f08edb",
+      "gallery_label": "UAVFF3D \u00b7 f08edb",
+      "exists": true,
+      "size_bytes": 494760189,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "fa647ac",
+      "gallery_label": "UAVFF3D \u00b7 fa647ac",
+      "exists": true,
+      "size_bytes": 657000913,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "skylume-buildings",
+      "gallery_label": "Buildings",
+      "exists": true,
+      "size_bytes": 506718533,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "skylume-campus",
+      "gallery_label": "Campus",
+      "exists": true,
+      "size_bytes": 548460741,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "skylume-ipark",
+      "gallery_label": "iPark",
+      "exists": true,
+      "size_bytes": 541821765,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "gauu-cuhk-lower",
+      "gallery_label": "CUHK Lower",
+      "exists": true,
+      "size_bytes": 476149541,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "gauu-hav",
+      "gallery_label": "HAV",
+      "exists": true,
+      "size_bytes": 523112313,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "gauu-cuhk-upper-finite",
+      "gallery_label": "CUHK Upper",
+      "exists": true,
+      "size_bytes": 530854453,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "gauu-smbu-finite",
+      "gallery_label": "SMBU",
+      "exists": true,
+      "size_bytes": 510508309,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "gauu-sziit-finite",
+      "gallery_label": "SZIIT",
+      "exists": true,
+      "size_bytes": 465871477,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "skylume-tec-school-finite",
+      "gallery_label": "Tec School",
+      "exists": true,
+      "size_bytes": 498110957,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "urbanscene3d-residence",
+      "gallery_label": "Residence",
+      "exists": true,
+      "size_bytes": 400385573,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "urbanscene3d-sci-art-finite",
+      "gallery_label": "Sci Art",
+      "exists": true,
+      "size_bytes": 386959381,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "urbanscene3d-hospital-rig-20260908",
+      "gallery_label": "Hospital",
+      "exists": true,
+      "size_bytes": 510003069,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "skylume-gym",
+      "gallery_label": "Gym",
+      "exists": true,
+      "size_bytes": 500250033,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "urbanscene3d-campus-finite",
+      "gallery_label": "Campus",
+      "exists": true,
+      "size_bytes": 450406169,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "skylume-staff-residence-finite",
+      "gallery_label": "Staff Residence",
+      "exists": true,
+      "size_bytes": 482621713,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "airsim16-legacy-expanded-20260910",
+      "gallery_label": "AirSim 16",
+      "exists": true,
+      "size_bytes": 564818753,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "airsim18-legacy-expanded-20260910",
+      "gallery_label": "AirSim 18",
+      "exists": true,
+      "size_bytes": 573701865,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "airsim26-legacy-expanded-20260910",
+      "gallery_label": "AirSim 26",
+      "exists": true,
+      "size_bytes": 604442693,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    },
+    {
+      "id": "ue-smallcity-legacy-expanded-20260910",
+      "gallery_label": "SmallCity",
+      "exists": true,
+      "size_bytes": 585159253,
+      "sh_degree": 0,
+      "publication_status": "source-located; dataset attribution and final asset selection pending",
+      "sha256": null
+    }
+  ]
+}

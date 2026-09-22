@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>OpenFlyScan 三维质量反馈</title><link rel="stylesheet" href="/static/viewer.css"></head>
+<body>
+  <canvas id="gl"></canvas>
+  <div id="top"><b>OpenFlyScan 三维质量反馈</b><span id="summary">加载中…</span></div>
+  <div id="legend"><span><i class="cloud"></i>点云</span><span><i class="candidate"></i>补拍目标</span><span><i class="camera"></i>补拍相机</span></div>
+  <div id="controls"><button id="reset">重置视角</button><label>点大小 <input id="size" type="range" min="1" max="6" step=".5" value="2"></label><button id="details">候选详情</button></div>
+  <aside id="panel" class="hidden"><div class="row"><h2>候选表面</h2><button id="close">×</button></div><p class="warning">红色为 Quality Predictor 选出的目标，绿色为建议拍摄位置。</p><div id="candidateList"></div></aside>
+  <div id="hint">单指旋转 · 双指缩放 · 红点可辅助定位</div>
+  <script src="/static/viewer.js"></script>
+</body></html>

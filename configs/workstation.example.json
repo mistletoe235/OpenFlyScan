@@ -1,0 +1,12 @@
+{
+  "geoff3d_root": "/opt/GeoFF3D",
+  "pi3x_checkpoint": "/data/weights/pi3x/checkpoint-best.pth",
+  "quality_checkpoint": "/data/weights/quality_predictor.pt",
+  "device": "cuda:0",
+  "max_regions_per_chunk": 64,
+  "max_preview_points": 180000,
+  "minimum_images": 30,
+  "preview_step_images": 26,
+  "seed": 20260907,
+  "dense_stride": 4
+}

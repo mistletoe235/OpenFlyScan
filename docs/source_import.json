@@ -1,0 +1,393 @@
+{
+  "schema": "openflyscan.source_import.v1",
+  "date": "2026-09-21",
+  "source_archive_commit": "fd4767b1fe371fac42fbfaf070e960110b38ef6b",
+  "files": [
+    {
+      "path": "configs/quality_predictor.json",
+      "source": "quality-model-v6/configs/head_training_v6_viewaux.json",
+      "sha256": "1840bb2f7eb4a916e03d7338e59a13f6cb691be5907db60dace08e5e8bb90361",
+      "import_path": "configs/head_training_v6_viewaux.json"
+    },
+    {
+      "path": "openflyscan/quality_predictor/region_features.py",
+      "source": "quality-model-v6/repair_head/current_native_head_inputs.py",
+      "sha256": "9da2a5049dff415a1a09e42c66a6133a547869dcc77ecc8b8bf8c9722489d380",
+      "import_path": "repair_head/current_native_head_inputs.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/regions.py",
+      "source": "quality-model-v6/repair_head/current_region_queries.py",
+      "sha256": "630da539210e6eb5a677c0cbe88e4b60e5613b524f311da18d972d6fb0899281",
+      "import_path": "repair_head/current_region_queries.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/directional_evaluation.py",
+      "source": "quality-model-v6/repair_head/directional_evaluation_v4.py",
+      "sha256": "58ea1adc2759913cae397c32935b5d79dfec9a5cf9569c82e943bc0c70f1af5a",
+      "import_path": "repair_head/directional_evaluation_v4.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/directional_quality.py",
+      "source": "quality-model-v6/repair_head/directional_quality_v4.py",
+      "sha256": "e778262fb6f6773991b01626653592bf2b42d458c1e25cfc773b9bab6781041b",
+      "import_path": "repair_head/directional_quality_v4.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/observation_source.py",
+      "source": "quality-model-v6/repair_head/exposure_dynamic_training.py",
+      "sha256": "4fd6e81e5fc382944699e74bd7eee36f0f96640b50b8c1058b8163bd9a8535e9",
+      "import_path": "repair_head/exposure_dynamic_training.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/paired_observation_source.py",
+      "source": "quality-model-v6/repair_head/exposure_dynamic_training_v2.py",
+      "sha256": "7017e9e89940ffd0ed841d24deadd7c9f845f8cd95167de702a59a138c3e082e",
+      "import_path": "repair_head/exposure_dynamic_training_v2.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/training_source.py",
+      "source": "quality-model-v6/repair_head/exposure_dynamic_training_v3.py",
+      "sha256": "b0afa11bf4fe905bdf1c4928a3ffcc1d11b353c72e960f9bd3af986e04bd19a0",
+      "import_path": "repair_head/exposure_dynamic_training_v3.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/footprint_window_sampler.py",
+      "source": "quality-model-v6/repair_head/footprint_window_sampler.py",
+      "sha256": "01dbcb36ae082361681f3fe04d13c1830d5711643d05be056368dc9f5946ff0d",
+      "import_path": "repair_head/footprint_window_sampler.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/base_supervision.py",
+      "source": "quality-model-v6/repair_head/full_supervision_v2.py",
+      "sha256": "9979651cb6c24f85ea5686d2445c2316ebacf7a19bd195a09925a168bc97ef5e",
+      "import_path": "repair_head/full_supervision_v2.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/geometry_evidence.py",
+      "source": "quality-model-v6/repair_head/geometry_evidence_v2.py",
+      "sha256": "3aa3bf047130f3c49560c2e2cdaa4940374ebfac42dd87ae2afafc130064a263",
+      "import_path": "repair_head/geometry_evidence_v2.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/training_base.py",
+      "source": "quality-model-v6/repair_head/head_training_v2.py",
+      "sha256": "e1898ff4c119874d4f367281c2290907926b25b82f05353569900424cb292a01",
+      "import_path": "repair_head/head_training_v2.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/training.py",
+      "source": "quality-model-v6/repair_head/head_training_v3.py",
+      "sha256": "c1586e06593b328c4f93f39d7e5aee46d6da81e2ebd7eb3962a24f54e9962da1",
+      "import_path": "repair_head/head_training_v3.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/model.py",
+      "source": "quality-model-v6/repair_head/local_query_quality.py",
+      "sha256": "efab3588f2562c664a710a2efe3135e3421f824c1e13be0a9afd2bcf7a38871b",
+      "import_path": "repair_head/local_query_quality.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/sparse_supervision.py",
+      "source": "quality-model-v6/repair_head/missing_observation_supervision_v3.py",
+      "sha256": "8377207d938b05efaa22034de16e23add02f1c051c5123722e972a144e268046",
+      "import_path": "repair_head/missing_observation_supervision_v3.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/modality_controls.py",
+      "source": "quality-model-v6/repair_head/modality_audit_v3.py",
+      "sha256": "bf4cc06ce50f0f2cd867394cca2fe3ec0ef82243b1dc9a6715c9b9b950020ab0",
+      "import_path": "repair_head/modality_audit_v3.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/native_pi3x_geometry.py",
+      "source": "quality-model-v6/repair_head/native_pi3x_geometry.py",
+      "sha256": "b7e7e68abdba183bfeb1ce0b20bc0b5708a2f52f4551a705666e3dab1e426f15",
+      "import_path": "repair_head/native_pi3x_geometry.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/pi3x_features.py",
+      "source": "quality-model-v6/repair_head/online_pi3x_query_features.py",
+      "sha256": "efbc8b43b672a564ecac3993d27dd30d48ab6279da1912470610948282b70d9d",
+      "import_path": "repair_head/online_pi3x_query_features.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/chunk_filter.py",
+      "source": "quality-model-v6/repair_head/outer_chunk_filter_v5.py",
+      "sha256": "cc3327f84996491958375dbc8c2f94b33b04595286b88521f30f87ac329097c0",
+      "import_path": "repair_head/outer_chunk_filter_v5.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/pi3x_cached_dino.py",
+      "source": "quality-model-v6/repair_head/pi3x_cached_dino.py",
+      "sha256": "8adb0ce72dc91df21ee8df1e41146e04f8f5dd2d1a4ad874de9ce7896d6a75e3",
+      "import_path": "repair_head/pi3x_cached_dino.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/region_selection.py",
+      "source": "quality-model-v6/repair_head/region_selection_v2.py",
+      "sha256": "36872850b6738c5a48adb4176f43f091b1e4269cf9f670948e6d471d4eb29e0f",
+      "import_path": "repair_head/region_selection_v2.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/surface_reprojection_check.py",
+      "source": "quality-model-v6/repair_head/surface_reprojection_check.py",
+      "sha256": "a02d9769c2f2ea86e886cfe97aa00308d38c46b87fb852ba6d1c5b546b656b26",
+      "import_path": "repair_head/surface_reprojection_check.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/teacher_grid.py",
+      "source": "quality-model-v6/repair_head/teacher_grid_v2.py",
+      "sha256": "27ee6d3655fe79443aab497c1ef569a5dabbf5070ec934edd706d7df47ec29ef",
+      "import_path": "repair_head/teacher_grid_v2.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/training_performance.py",
+      "source": "quality-model-v6/repair_head/training_performance.py",
+      "sha256": "54f32c2d9f01f1f6f4bd26d82b3b8055ed9021d065911af1bc4b1817f5c30c45",
+      "import_path": "repair_head/training_performance.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/run_contract.py",
+      "source": "quality-model-v6/repair_head/training_run_v2.py",
+      "sha256": "bea1b84586f4a9c0605ba9081b6483377a360f55ecd214069b7f2dcdf3ef94f3",
+      "import_path": "repair_head/training_run_v2.py"
+    },
+    {
+      "path": "openflyscan/quality_predictor/view_supervision.py",
+      "source": "quality-model-v6/repair_head/view_auxiliary_v6.py",
+      "sha256": "44579f6e1d869ad58bf6c14781f87e953010cf8285af10899a9a63314b8362a4",
+      "import_path": "repair_head/view_auxiliary_v6.py"
+    },
+    {
+      "path": "scripts/expanded_teacher_adapter.py",
+      "source": "quality-model-v6/scripts/expanded_teacher_adapter.py",
+      "sha256": "03a160e934e3b6032b83daccdca97f903818b6e572a773aa074d0f13013fd08b",
+      "import_path": "scripts/expanded_teacher_adapter.py"
+    },
+    {
+      "path": "scripts/map_rgb_to_rectified_uv.py",
+      "source": "quality-model-v6/scripts/map_rgb_to_rectified_uv.py",
+      "sha256": "d92f6bd80b7d90e246501582f86527eb57c08dc9084e18c9cd64019fc7363f30",
+      "import_path": "scripts/map_rgb_to_rectified_uv.py"
+    },
+    {
+      "path": "scripts/train_quality_predictor.py",
+      "source": "quality-model-v6/scripts/train_exposure_dynamic_head_v3.py",
+      "sha256": "30a32f95013e2c14fc2e72b4caf8467d745bd153da48b66e0ae104a7bf0fbd1d",
+      "import_path": "scripts/train_exposure_dynamic_head_v3.py"
+    },
+    {
+      "path": "tests/test_region_features.py",
+      "source": "quality-model-v6/tests/test_current_native_head_inputs.py",
+      "sha256": "7e66c7773763ed2bc1f2c1cda2977dc6d6aeab7e4ddb43e7d3534d7090abd279",
+      "import_path": "tests/test_current_native_head_inputs.py"
+    },
+    {
+      "path": "tests/test_base_supervision.py",
+      "source": "quality-model-v6/tests/test_full_supervision_v2.py",
+      "sha256": "d0e69b095494cff2873f1d65fc0a5b1df4b2f4fa0980ed0fca30aaff94350704",
+      "import_path": "tests/test_full_supervision_v2.py"
+    },
+    {
+      "path": "tests/test_training_base.py",
+      "source": "quality-model-v6/tests/test_head_training_v2.py",
+      "sha256": "29d1d969916fdf7924cabc452f005ff8d444a56aa0fd0ae428456ca349e6baf2",
+      "import_path": "tests/test_head_training_v2.py"
+    },
+    {
+      "path": "tests/test_quality_training.py",
+      "source": "quality-model-v6/tests/test_head_training_v3.py",
+      "sha256": "da9e86e20f222bb01986ac1ac69265c5f120dcd2355644ff098117a8ff8ec307",
+      "import_path": "tests/test_head_training_v3.py"
+    },
+    {
+      "path": "tests/test_run_contract.py",
+      "source": "quality-model-v6/tests/test_training_run_v2.py",
+      "sha256": "00cac1a7886fd52ee44b8d1ba1ddc78208b8df700319f5dffe3eb0d72cd18c59",
+      "import_path": "tests/test_training_run_v2.py"
+    },
+    {
+      "path": "tests/test_view_supervision.py",
+      "source": "quality-model-v6/tests/test_view_auxiliary_v6.py",
+      "sha256": "0c53eeb911cb87f7e2388b4ceef526ecc863315df1016167b464c5876163fb68",
+      "import_path": "tests/test_view_auxiliary_v6.py"
+    },
+    {
+      "path": "scripts/evaluate_quality.py",
+      "source": "mapping-dsw1/scripts/evaluate_region_quality_baseline.py",
+      "sha256": "d319c10527e7458cdf0138f1c5e7de13be3a45485a7e681918ef1741c9008944",
+      "import_path": "scripts/evaluate_region_quality_baseline.py"
+    },
+    {
+      "path": "scripts/make_quality_controls.py",
+      "source": "quality-model-v6/scripts/make_head_training_v2_controls.py",
+      "sha256": "0d2df21eecacc570b47a9e223c3c545876ff90c301efb34dd2f20ccbc3d3ce57",
+      "import_path": "scripts/make_head_training_v2_controls.py"
+    },
+    {
+      "path": "scripts/train_quality_predictor_legacy.py",
+      "source": "quality-model-v6/scripts/train_exposure_dynamic_head_v2.py",
+      "sha256": "ff5419903200ddfb1ada3c10aaadfd5a40e9824737d6dda77ad24442e3142efd",
+      "import_path": "scripts/train_exposure_dynamic_head_v2.py"
+    }
+  ],
+  "naming_update": {
+    "date": "2026-09-21",
+    "note": "Source and sha256 identify the original import; current paths and imports follow paper terminology. Checkpoint schemas and parameter keys are retained.",
+    "renames": [
+      {
+        "old": "configs/head_training_v6_viewaux.json",
+        "new": "configs/quality_predictor.json"
+      },
+      {
+        "old": "repair_head/__init__.py",
+        "new": "openflyscan/quality_predictor/__init__.py"
+      },
+      {
+        "old": "repair_head/current_native_head_inputs.py",
+        "new": "openflyscan/quality_predictor/region_features.py"
+      },
+      {
+        "old": "repair_head/current_region_queries.py",
+        "new": "openflyscan/quality_predictor/regions.py"
+      },
+      {
+        "old": "repair_head/directional_evaluation_v4.py",
+        "new": "openflyscan/quality_predictor/directional_evaluation.py"
+      },
+      {
+        "old": "repair_head/directional_quality_v4.py",
+        "new": "openflyscan/quality_predictor/directional_quality.py"
+      },
+      {
+        "old": "repair_head/exposure_dynamic_training.py",
+        "new": "openflyscan/quality_predictor/observation_source.py"
+      },
+      {
+        "old": "repair_head/exposure_dynamic_training_v2.py",
+        "new": "openflyscan/quality_predictor/paired_observation_source.py"
+      },
+      {
+        "old": "repair_head/exposure_dynamic_training_v3.py",
+        "new": "openflyscan/quality_predictor/training_source.py"
+      },
+      {
+        "old": "repair_head/footprint_window_sampler.py",
+        "new": "openflyscan/quality_predictor/footprint_window_sampler.py"
+      },
+      {
+        "old": "repair_head/full_supervision_v2.py",
+        "new": "openflyscan/quality_predictor/base_supervision.py"
+      },
+      {
+        "old": "repair_head/geometry_evidence_v2.py",
+        "new": "openflyscan/quality_predictor/geometry_evidence.py"
+      },
+      {
+        "old": "repair_head/head_training_v2.py",
+        "new": "openflyscan/quality_predictor/training_base.py"
+      },
+      {
+        "old": "repair_head/head_training_v3.py",
+        "new": "openflyscan/quality_predictor/training.py"
+      },
+      {
+        "old": "repair_head/local_query_quality.py",
+        "new": "openflyscan/quality_predictor/model.py"
+      },
+      {
+        "old": "repair_head/missing_observation_supervision_v3.py",
+        "new": "openflyscan/quality_predictor/sparse_supervision.py"
+      },
+      {
+        "old": "repair_head/modality_audit_v3.py",
+        "new": "openflyscan/quality_predictor/modality_controls.py"
+      },
+      {
+        "old": "repair_head/native_pi3x_geometry.py",
+        "new": "openflyscan/quality_predictor/native_pi3x_geometry.py"
+      },
+      {
+        "old": "repair_head/online_pi3x_query_features.py",
+        "new": "openflyscan/quality_predictor/pi3x_features.py"
+      },
+      {
+        "old": "repair_head/outer_chunk_filter_v5.py",
+        "new": "openflyscan/quality_predictor/chunk_filter.py"
+      },
+      {
+        "old": "repair_head/pi3x_cached_dino.py",
+        "new": "openflyscan/quality_predictor/pi3x_cached_dino.py"
+      },
+      {
+        "old": "repair_head/region_selection_v2.py",
+        "new": "openflyscan/quality_predictor/region_selection.py"
+      },
+      {
+        "old": "repair_head/surface_reprojection_check.py",
+        "new": "openflyscan/quality_predictor/surface_reprojection_check.py"
+      },
+      {
+        "old": "repair_head/teacher_grid_v2.py",
+        "new": "openflyscan/quality_predictor/teacher_grid.py"
+      },
+      {
+        "old": "repair_head/training_performance.py",
+        "new": "openflyscan/quality_predictor/training_performance.py"
+      },
+      {
+        "old": "repair_head/training_run_v2.py",
+        "new": "openflyscan/quality_predictor/run_contract.py"
+      },
+      {
+        "old": "repair_head/view_auxiliary_v6.py",
+        "new": "openflyscan/quality_predictor/view_supervision.py"
+      },
+      {
+        "old": "scripts/evaluate_region_quality_baseline.py",
+        "new": "scripts/evaluate_quality.py"
+      },
+      {
+        "old": "scripts/make_head_training_v2_controls.py",
+        "new": "scripts/make_quality_controls.py"
+      },
+      {
+        "old": "scripts/predict_head.py",
+        "new": "scripts/predict_quality.py"
+      },
+      {
+        "old": "scripts/train_exposure_dynamic_head_v2.py",
+        "new": "scripts/train_quality_predictor_legacy.py"
+      },
+      {
+        "old": "scripts/train_exposure_dynamic_head_v3.py",
+        "new": "scripts/train_quality_predictor.py"
+      },
+      {
+        "old": "tests/test_current_native_head_inputs.py",
+        "new": "tests/test_region_features.py"
+      },
+      {
+        "old": "tests/test_full_supervision_v2.py",
+        "new": "tests/test_base_supervision.py"
+      },
+      {
+        "old": "tests/test_head_training_v2.py",
+        "new": "tests/test_training_base.py"
+      },
+      {
+        "old": "tests/test_head_training_v3.py",
+        "new": "tests/test_quality_training.py"
+      },
+      {
+        "old": "tests/test_training_run_v2.py",
+        "new": "tests/test_run_contract.py"
+      },
+      {
+        "old": "tests/test_view_auxiliary_v6.py",
+        "new": "tests/test_view_supervision.py"
+      }
+    ]
+  }
+}

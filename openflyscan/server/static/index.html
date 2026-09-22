@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>OpenFlyScan 流式重建</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="eyebrow">OPENFLYSCAN · QUALITY-GUIDED REACQUISITION</div>
+      <h1>边传图，边建立三维补拍判断</h1>
+      <p>Pi3X 生成局部三维结构，Quality Predictor 评估区域重建误差，规划器组织定向补拍航带。</p>
+    </header>
+
+    <section class="card" id="authCard">
+      <h2>连接服务</h2>
+      <label>访问码<input id="token" type="password" autocomplete="off" placeholder="输入服务器访问码"></label>
+      <button id="connect">连接</button>
+      <div class="message" id="authMessage"></div>
+    </section>
+
+    <section class="card hidden" id="createCard">
+      <h2>新建任务</h2>
+      <label>任务名称<input id="name" value="手机航拍任务"></label>
+      <div class="grid2">
+        <label>相机水平视场角<input id="hfov" type="number" value="73.7" step="0.1"></label>
+        <label>最多补拍表面<input id="maxTasks" type="number" value="10" min="1" max="30"></label>
+      </div>
+      <label>起飞点绝对高程（米，可留空）<input id="takeoffAltitude" type="number" step="0.1" placeholder="留空仅生成点云和质量结果，不导出航线"></label>
+      <label class="check"><input id="continuousCapture" type="checkbox"> 连续补拍（实验，仅支持 schema 14 的 Android V5）</label>
+      <button id="create">创建任务</button>
+    </section>
+
+    <section class="card hidden" id="uploadCard">
+      <div class="row between"><h2 id="sessionName">任务</h2><span class="pill" id="phase">接收中</span></div>
+      <div class="stats">
+        <div><strong id="imageCount">0</strong><span>照片</span></div>
+        <div><strong id="registered">—</strong><span>已处理图像</span></div>
+        <div><strong id="sfmPoints">—</strong><span>预览点</span></div>
+      </div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <p id="statusMessage">等待上传</p>
+
+      <label>照片拍摄方向
+        <select id="captureView">
+          <option>NADIR</option><option>FORWARD_OBLIQUE</option><option>BACKWARD_OBLIQUE</option>
+          <option>LEFT_OBLIQUE</option><option>RIGHT_OBLIQUE</option>
+        </select>
+      </label>
+      <details>
+        <summary>照片没有 DJI EXIF 时填写逐图遥测</summary>
+        <p class="warning">必须是无人机拍照时的相机位置，不要填手机当前位置。</p>
+        <div class="grid3">
+          <label>纬度<input id="latitude" type="number" step="any"></label>
+          <label>经度<input id="longitude" type="number" step="any"></label>
+          <label>高程 m<input id="altitude" type="number" step="any"></label>
+        </div>
+      </details>
+      <div class="actions">
+        <label class="fileButton">选择多张照片<input id="files" type="file" accept="image/jpeg,image/png" multiple></label>
+        <label class="fileButton secondary">拍一张并上传<input id="camera" type="file" accept="image/*" capture="environment"></label>
+      </div>
+      <div id="uploadMessage" class="message"></div>
+      <button class="danger" id="finalize">结束上传并完整处理</button>
+    </section>
+
+    <section class="card hidden" id="resultCard">
+      <h2>辅助判断结果</h2>
+      <p id="missionWarning" class="warning">航点仍是研究预览，未完成净空、障碍物和地理围栏验收。</p>
+      <div class="actions">
+        <a class="button" id="viewerLink" target="_blank">打开三维点云</a>
+        <a class="button secondary" id="missionLink" download>下载手机航点</a>
+      </div>
+      <details><summary>运行错误 / 限制</summary><pre id="errorText">无</pre></details>
+    </section>
+
+    <section class="card hidden" id="historyCard">
+      <h2>已有任务</h2><div id="sessions"></div>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

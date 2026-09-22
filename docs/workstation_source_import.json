@@ -1,0 +1,136 @@
+{
+  "date": "2026-09-21",
+  "files": [
+    {
+      "path": "openflyscan/planning/analyze_frozen_region_observations.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/analyze_frozen_region_observations.py",
+      "source_sha256": "bf7761acf854c79df1f3b35dd8f62cb27862557b4b0ee3812b24edc924cebf08"
+    },
+    {
+      "path": "openflyscan/planning/area_survey_policy.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/area_survey_policy.py",
+      "source_sha256": "db80c5041677682a5897b026c35928e8481932d523492539839f8d77b05a29d8"
+    },
+    {
+      "path": "openflyscan/planning/continuous_capture_path.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/continuous_capture_path.py",
+      "source_sha256": "63f18e2e8ff99dcd4afb67bf91decb5118fcd9bb1339b04d2b80abdfc5934050"
+    },
+    {
+      "path": "openflyscan/planning/directional_surface_cover.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/directional_surface_cover.py",
+      "source_sha256": "40bab2c2656ea6b1a39b433becc9b254be91101dc1a418163cf4483ddf5356c8"
+    },
+    {
+      "path": "openflyscan/planning/generate_candidate_routes.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/generate_candidate_routes.py",
+      "source_sha256": "9fec6aa79dc483dba4c5f73756408741ab61eedc97b5d2024fcfcfa930e65a8b"
+    },
+    {
+      "path": "openflyscan/planning/local_multiview_selection.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/local_multiview_selection.py",
+      "source_sha256": "a17c05602d3ec9db4070723aa1bc2d5392f291dc17557bbe1a4fb574407b2c3b"
+    },
+    {
+      "path": "openflyscan/planning/local_surface_evidence.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/local_surface_evidence.py",
+      "source_sha256": "7eebf485ae30bb31b6a589512c7495be9b2442d528f401847113ecc6353976c8"
+    },
+    {
+      "path": "openflyscan/planning/plan_frozen_region_scans.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/plan_frozen_region_scans.py",
+      "source_sha256": "23b37e297eb069fd6e7845b5458bf4abe2b66cb989533d372be4b7c6c678d9ce"
+    },
+    {
+      "path": "openflyscan/planning/plan_region_coverage_recapture.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/plan_region_coverage_recapture.py",
+      "source_sha256": "81f03f16618e585ec4a7a85de364bc2fd7b6ca2d76377540aecd349ec7add8fe"
+    },
+    {
+      "path": "openflyscan/planning/recapture_budget_core.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/recapture_budget_core.py",
+      "source_sha256": "917927333a27d787bcb90eb4b1d6039829c4b8cd96a12ebacf00d8afb5458a30"
+    },
+    {
+      "path": "openflyscan/planning/recapture_observation_tokens.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/recapture_observation_tokens.py",
+      "source_sha256": "a0f74acc4206b5f40509eeb765d5406978cdb869bd5506c2572263d02397d434"
+    },
+    {
+      "path": "openflyscan/planning/recapture_overlap_connections.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/recapture_overlap_connections.py",
+      "source_sha256": "b2fd66d2cf11d5873e62ef5cead82342da9089f7466ed7ecdade477988f16b4c"
+    },
+    {
+      "path": "openflyscan/planning/region_coverage_geometry.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/region_coverage_geometry.py",
+      "source_sha256": "cc7e1fefbc7d8f970ee78635d32b4f2fd10f0fbfc2bb3cff78df321bca6a5fc7"
+    },
+    {
+      "path": "openflyscan/planning/reliable_context_preference.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/reliable_context_preference.py",
+      "source_sha256": "37f22d75086c7c9caa72ec22edd165152cc453344e29c4d483a0b66205a5d3f9"
+    },
+    {
+      "path": "openflyscan/planning/risk_extent_tasks.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/risk_extent_tasks.py",
+      "source_sha256": "f6292f2fd1cb3020aa584d68892129460520afe9c0e02381af134bda58d69f24"
+    },
+    {
+      "path": "openflyscan/planning/run_budgeted_recapture_trial.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/run_budgeted_recapture_trial.py",
+      "source_sha256": "99a860301c685724e8ba178ab91c35472dfb4c07ad5e453895e70de255ce475e"
+    },
+    {
+      "path": "openflyscan/planning/run_directional_surface_cover.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/run_directional_surface_cover.py",
+      "source_sha256": "5a09e03e555d5081fdd9d11a43f89df4c99e71696214d86a86d06f8f51984317"
+    },
+    {
+      "path": "openflyscan/missions/geometry_export.py",
+      "source": "/Users/mac/Documents/Playground/openfly-vggt-active-mapping/scripts/export_continuous_schema13.py",
+      "source_sha256": "005575b1a4937825ad585ccbc8d5fabc26747d1c0f795d62bf79e3527d8716b9"
+    },
+    {
+      "path": "openflyscan/server/http.py",
+      "source": "/tmp/openflyscan-service-20260921/streaming_service/server.py",
+      "source_sha256": "8721b4269d672fdecfac218fbe4e17dff7336d83c27b513123988584819e7d62"
+    },
+    {
+      "path": "openflyscan/server/relative_height_test.py",
+      "source": "/tmp/openflyscan-service-20260921/streaming_service/relative_height_test.py",
+      "source_sha256": "a1ae1674143b3e3cfc43a60cb489393a87731e8a2799cb61d1424b1b7bf0dea3"
+    },
+    {
+      "path": "openflyscan/server/static/index.html",
+      "source": "/tmp/openflyscan-service-20260921/streaming_service/static/index.html",
+      "source_sha256": "f93621b15733db9f5bb58a2059afed8acf3f1c58b1d034f8833b1595c2f63f48"
+    },
+    {
+      "path": "openflyscan/server/static/viewer.js",
+      "source": "/tmp/openflyscan-service-20260921/streaming_service/static/viewer.js",
+      "source_sha256": "0757a12dc54a4fa5f25be555680c9d81af4c19e867ccef958e936d344634cf78"
+    },
+    {
+      "path": "openflyscan/server/static/viewer.html",
+      "source": "/tmp/openflyscan-service-20260921/streaming_service/static/viewer.html",
+      "source_sha256": "d9393c8945f6e3f844ce0924bd82fd7afd7a87b53d43f11f510210f1b56bc42d"
+    },
+    {
+      "path": "openflyscan/server/static/viewer.css",
+      "source": "/tmp/openflyscan-service-20260921/streaming_service/static/viewer.css",
+      "source_sha256": "b7f424f463e07d83ba47667a13d8d81dbb78339af6f86a526e4ce5feb9977ccb"
+    },
+    {
+      "path": "openflyscan/server/static/style.css",
+      "source": "/tmp/openflyscan-service-20260921/streaming_service/static/style.css",
+      "source_sha256": "8492f55f66a8888811d28a2127881e0732f43d7c47837829c167a5a010032a4e"
+    },
+    {
+      "path": "openflyscan/server/static/app.js",
+      "source": "/tmp/openflyscan-service-20260921/streaming_service/static/app.js",
+      "source_sha256": "a43c3195bd4aab765ba669cee3d2b01030c2f2cbb0e29610d580142e665a7602"
+    }
+  ],
+  "note": "Source hashes precede package import rewrites and service adaptations."
+}
