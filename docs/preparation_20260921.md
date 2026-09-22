@@ -1,39 +1,49 @@
-# 五仓库开源准备进度 — 2026-09-21
+# Five-repository preparation — September 21, 2026
 
-## 仓库边界
+[English](preparation_20260921.md) · [Chinese reference](preparation_20260921.zh-CN.md)
 
-保留五个代码仓库：OpenFlyScan 主仓库、Android V4、Android V5、iOS、UE。
-在线服务属于主仓库，不另建仓库。网站和 HF 沿用已有入口。
+This is a dated preparation record. All five source repositories were subsequently
+pushed privately under `mistletoe235`; see [current repository links](../components.json).
+The source/asset boundaries below are unchanged.
 
-## 本轮完成
+## Repository boundaries
 
-| 项目 | 结果 |
+The five source repositories are the OpenFlyScan main repository, Android V4,
+Android V5, iOS and UE. The online workstation service belongs in the main
+repository, not a sixth repository. The existing website and HF dataset are reused.
+
+## Completed in this pass
+
+| Item | Result |
 | --- | --- |
-| V5 连续补拍协商 | 新建会话时显式请求 schema 14；默认仍为 schema 13 |
-| Android 航线预览 | 未批准航线可下载并在独立只读路线图查看，不进入执行任务 |
-| 三端线上接口 | V4/V5/iOS 均通过新服务的会话和航线检查；未执行飞行 |
-| 主仓库 CPU 示例 | 不需要数据/GPU 的合成输入示例，可验证加载和推理接口 |
-| 真实推理样例 | 约 5 MB 的 head 权重、8 区域特征和参考输出已纳入主仓库，随源码发布 |
-| 依赖复原 | 锁定 GeoFF3D 版本及补丁，八个修改文件复原后逐字节一致 |
-| 训练入口 | 数据模板、路径解析、直接单卡／多卡训练与断点续训；已移除集群审批和代码快照前置要求 |
-| UE 发布整理 | 对外名称改为 OpenFlyScan UE，保留工程内部兼容名称；补充源码/包版本对应说明 |
-| 资产盘点 | 保留 35 个现有 GS 候选作为上传索引，总计约 20.96 GiB；取消与论文逐项对齐的待办 |
+| V5 continuous-recapture negotiation | New sessions explicitly request schema 14 when selected; schema 13 remains the default |
+| Android route preview | Unapproved missions open an independent read-only diagram, not an execution task |
+| Three-client service interfaces | V4/V5/iOS passed session/mission checks against the new service; no flight was executed |
+| Main CPU example | Synthetic inputs check loading/inference without external data or a GPU |
+| Real inference example | Approximately 5 MB of head weights, eight-region features and reference outputs included with source |
+| Dependency recovery | Pinned GeoFF3D revision and patch; all eight restored modified files matched byte-for-byte |
+| Training entry | Data template/path resolution, direct single-/multi-GPU training and resume; cluster approval/code-snapshot prerequisites removed |
+| UE release preparation | External name updated to OpenFlyScan UE while retaining compatible internal names; source/package version correspondence documented |
+| Asset inventory | 35 existing GS candidates retained as an upload index, about 20.96 GiB; paper-by-paper reconciliation removed from the task list |
 
-主仓库加入权重样例与许可文件后 127 项测试通过；Android V4/V5 此前分别通过 31/49 项针对性测试和
-Debug 构建；iOS 28 项云端测试通过。详细范围见 [验证记录](validation.md)。
+After adding weights, examples and licenses, 127 main-repository tests passed.
+Earlier V4/V5 targeted runs passed 31/49 tests and Debug builds; 28 iOS cloud tests
+passed. See the [validation record](validation.md) for scope.
 
-主仓库、三个 App 和 UE 均运行源码发布检查。当前文件及可达 Git 历史的有限
-凭据模式/大文件检查未发现匹配项；UE 自带发布树检查通过。主仓库、自有 head 与小样例已明确采用 Apache-2.0；
-骨干权重和其他第三方资产保留独立许可，详见 `licensing.md`。
+All five repositories ran source-release checks. Bounded credential-pattern and
+large-file scans of current files/reachable history found no matches; the UE
+release-tree check passed. Main original code, the head and sample use Apache-2.0;
+backbone weights and third-party assets retain separate terms. See [licensing](licensing.md).
 
-## 仍需处理的发布项
+## Publication items recorded at the time
 
-- 确认安全反馈联系方式，以及五个 GitHub 仓库的归属和名称。
-- 审阅并提交现有修改，随后配置远端；本轮没有创建远端、提交或推送。
-- head 权重与小样例随主仓库发布；GS 与仿真包继续放 HF，不再安排 GS 清单与论文逐项核对。
-- 训练 teacher/cache 数据包尚未发布；现有模板和工具不等于完整训练数据已提供。
-- App 的正式签名、有效 SDK Key 和最终实机验收仍与源码发布分开。
-- UE 公共包应从固定源码版本重建并记录校验值；没有改写现有 Expo East 包的来源声明。
+- A private security contact and the five GitHub owners/names still needed confirmation.
+- Changes needed review/commit and remotes needed configuration; that preparation pass did not create remotes, commit or push. The later private push is recorded in the repository links above.
+- Head weights and the small sample ship in the main repository. GS assets and simulator packages remain on HF; paper-by-paper GS reconciliation is not a release task.
+- The teacher/cache training bundle was not published; templates and tools alone are not the complete training data.
+- App signing, valid SDK keys and hardware acceptance remain separate from source publication.
+- UE distribution packages should correspond to fixed source revisions and recorded checksums. The existing Expo East package's provenance was not rewritten.
 
-技术清单见 [release readiness](release_readiness.md)；资产索引见
-`configs/assets.release.json`，权重及样例校验值见 `configs/quality_predictor.release.json`。
+See [release readiness](release_readiness.md), the asset index at
+`../configs/assets.release.json`, and head/sample checksums at
+`../configs/quality_predictor.release.json`.

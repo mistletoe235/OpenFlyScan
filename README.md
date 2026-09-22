@@ -7,8 +7,8 @@ targeted reacquisition, and reconstructed scenes for drone simulation. This is t
 main project entry point and the home of the workstation service and Quality
 Predictor training and evaluation code. Mobile clients and UE/HIL remain separate projects.
 
-> 使用入口：[客户端选择与基本操作](docs/apps.md) · [工作站部署](docs/workstation.md) ·
-> [HIL 仿真](docs/simulator.md) · [质量预测模型](docs/quality_predictor.md)
+> Start here: [Mobile apps](docs/apps.md) · [Workstation setup](docs/workstation.md) ·
+> [HIL simulator](docs/simulator.md) · [Quality Predictor](docs/quality_predictor.md)
 
 ## Project components
 
