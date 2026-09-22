@@ -7,7 +7,7 @@ targeted reacquisition, and reconstructed scenes for drone simulation. This is t
 main project entry point and the home of the workstation service and Quality
 Predictor training and evaluation code. Mobile clients and UE/HIL remain separate projects.
 
-> Start here: [Mobile apps](docs/apps.md) · [Workstation setup](docs/workstation.md) ·
+> Start here: [Quick start](docs/quickstart.md) · [Mobile apps](docs/apps.md) · [Workstation setup](docs/workstation.md) ·
 > [HIL simulator](docs/simulator.md) · [Quality Predictor](docs/quality_predictor.md)
 
 ## Project components
@@ -61,13 +61,16 @@ remains in the [HF dataset](https://huggingface.co/datasets/IPEC-COMMUNITY/openf
 ### iOS TestFlight
 
 The iOS app is **not currently distributed on the App Store because of MFi-related
-authorization requirements** for the DJI accessory connection. Contact
-[@mistletoe235](https://github.com/mistletoe235) to request a **TestFlight invitation**;
-you can start with a [TestFlight invitation discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1). An invitation email is optional in the discussion. Comments are visible to everyone
-with repository access and may become public if the repository is opened later;
-only post an email if you accept that visibility, or request private follow-up.
-Never share account passwords or verification codes. No directly installable IPA
-is distributed here.
+authorization requirements** for its DJI accessory connection. Request access in
+the [TestFlight discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1)
+with your phone model, iOS version and aircraft/controller. The maintainer sends
+invitations when an eligible external-testing build is available; a request is
+not an invitation, and no installable IPA is provided here.
+
+An invitation email is optional. Discussion comments are visible to repository
+readers and may become public later. If you do not want to share an email there,
+omit it and wait for the maintainer to arrange a contact method; no dedicated
+private contact is configured yet. Never post passwords or verification codes.
 
 ### App safety notes
 
@@ -88,7 +91,7 @@ no additional model or scene download is needed.
 For mobile capture → upload → point cloud → reviewed reacquisition, start with
 the [workstation guide](docs/workstation.md) and [client guide](docs/apps.md).
 An SSH connection from the phone is not required: clients use a reachable
-HTTP/HTTPS service URL and bearer access code.
+HTTPS service URL and bearer access code.
 
 | Client | Pinned DJI SDK / reference aircraft | Mission schemas | Upload and cloud results |
 | --- | --- | --- | --- |
@@ -170,10 +173,10 @@ docs/           App/UE entry points, data requirements and source provenance
 ```
 
 Mobile and UE projects stay in independent repositories rather than being copied
-here. The released head and small inference sample are included; full image sets,
-training caches, backbone weights, GS PLYs and simulator archives stay in external
-storage/HF. See [release scope](docs/release.md)
-for the remaining preparation work and licensing review.
+here. The released head and small inference sample are included; full training images/caches and backbone weights must be prepared separately.
+HF currently provides the scene-inclusive Expo East simulator, not standalone
+GS PLYs or a training bundle. See [release scope](docs/release.md) for current
+availability and licensing.
 
 See [naming and compatibility](docs/naming.md) for archived checkpoint identifiers.
 

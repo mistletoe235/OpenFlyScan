@@ -1,33 +1,36 @@
-# Initial repository scope
+# Release scope
 
-This local repository is the main project entry and training/testing codebase,
-not the complete private experiment archive. No remote has been created yet.
+OpenFlyScan is the main entry point for the workstation service, Quality Predictor
+and training/evaluation code. Android V4, Android V5, iOS and UE are separate
+repositories under `mistletoe235`; their links are in [the README](../README.md).
+All five source repositories and the HF dataset are currently private.
 
-## Included
+## Available in the private preview
 
-- Quality Predictor dependency closure and original reference configuration.
-- Distributed training entry point, selected CPU tests and reference evaluator.
-- Public checkpoint inference interface, component registry and App/UE guides.
-- Source hashes and archive provenance in `source_import.json`.
-- Integrated mobile-facing workstation API, Pi3X feature pipeline, shared Quality
-  Predictor, Expo West directional planner and schema 13/14 mission export.
+- **Main repository:** trained head, small real-feature inference example,
+  training/evaluation code, workstation API, Pi3X feature pipeline and schema
+  13/14 reacquisition planning/export.
+- **Android releases:** signed V4 and V5 APKs, checksums and third-party notices
+  in both the main and matching app releases. See [installation](apps.md).
+- **iOS:** source and a [TestFlight request discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1),
+  not an installable IPA or a guaranteed available TestFlight build.
+- **HF dataset:** the scene-inclusive Expo East Linux HIL runtime. See
+  [the simulator guide](simulator.md). HF access is separate from GitHub access.
 
-## Before publishing
+The head ships at `weights/quality_predictor.pt`; it does not require an HF
+download. The HF package contains converted scene resources, not standalone GS
+PLYs. Full training images, teacher grids and DINO caches are not bundled, and
+the downloadable training bundle has not yet been published. Training with your
+own prepared data is described in [the training guide](training_data.md).
 
-1. Assign and verify the main, Android, iOS and UE source repository URLs.
-2. Finalize source licensing and retain attribution for external dependencies.
-3. Review the pinned Pi3X/GeoFF3D patch and COLMAP reader inventory before publication.
-4. Export portable training/evaluation data manifests and matching checkpoints.
-5. Verify direct training and checkpoint resume with the released data bundle.
-6. Package portable deployment configuration and dependency instructions for the
-   [workstation service](workstation.md), already replay-tested and deployed on
-   dsw1. Keep credentials, intermediate training checkpoints and runtime sessions
-   outside source Git; include the released head and small inference example.
+## Source and release records
 
-Public modules and commands follow the paper terminology; checkpoint fields
-and model behavior are preserved. Original source hashes and rename mappings
-are recorded in `source_import.json`; see [naming](naming.md). One imported test
-resolves its temporary path for macOS `/var` and `/private/var` aliases.
-CPU tests and real-image workstation replay are recorded in
-[validation](validation.md); full retraining remains separate. The released head and small inference example ship in this repository. Large
-scene and simulator packages belong in the HF dataset.
+Checkpoint compatibility and original import mappings are recorded in
+`source_import.json` and [naming](naming.md). Published package manifests identify
+their source revisions; later documentation commits do not change those binaries.
+See [validation](validation.md) for completed checks and
+[current release status](release_readiness.md) for outstanding work.
+
+Original code, the head and the inference example are Apache-2.0; third-party
+code, backbone weights and simulator assets retain their respective terms.
+See [licensing](licensing.md).

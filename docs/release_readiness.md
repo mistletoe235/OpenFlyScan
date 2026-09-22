@@ -1,49 +1,41 @@
-# Five-repository release preparation
+# Release status
 
-The source layout is fixed: one OpenFlyScan main repository, Android V4, Android
-V5, iOS and UE. The workstation service belongs in the main repository. The
-existing website and HF dataset are separate publication surfaces, not additional
-algorithm repositories.
+Status as of September 22, 2026. This page describes the private preview, not a
+requirement to obtain project approval before running or training the code.
 
-## Prepared in this pass
+## Available
 
-- Android V5 explicitly negotiates continuous schema 14 when requested.
-- Android V4/V5 allow read-only route preview without granting execution approval.
-- Opt-in native-client tests exercise a configured workstation without aircraft commands.
-- A self-contained CPU example checks the main predictor interface.
-- Original source, the released head and bundled example have explicit Apache-2.0 licensing; third-party and backbone terms remain separate.
-- GeoFF3D base revision, runtime patch and selected environment versions are recorded.
-- A portable training-plan template/resolver retains the frozen data checks.
-- UE uses the OpenFlyScan public name while retaining compatible project filenames.
-- Source checks report large files, signing material and recognizable credential tokens
-  without printing secret values.
-
-## Remaining publication decisions
-
-| Item | Required action |
+| Component | Current status |
 | --- | --- |
-| Security contact | Supply a private reporting address for all five repositories |
-| GitHub destinations | Five private repositories under `mistletoe235`; source links are in `components.json` |
-| Release binaries | Tag the intended source revision before building distributable packages; private source publication does not publish binaries |
-| SDK activation/signing | Supply private DJI/map keys and Android/iOS signing credentials for distributable apps |
-| Model and scene assets | Publish the head/sample with source; upload GS and simulator assets separately to HF |
-| Training reproduction | Release the teacher/cache bundle and verify direct training and checkpoint resume |
-| UE source provenance | Resolve retained Epic copyright headers and confirm the specific source/package distribution scope |
-| UE binary correspondence | Build/tag from the finalized source and preserve exact archive checksums and manifests |
+| Source | Main, Android V4/V5, iOS and UE pushed to private `mistletoe235` repositories |
+| Predictor | Trained head and eight-region inference example included in the main repository |
+| Android packages | Signed V4 `0.3.1-v4` and V5 `0.1.1-v5` APKs in main/app Releases, with checksums and notices |
+| iOS | Source and TestFlight request discussion available; no IPA distributed |
+| Workstation | Pi3X, shared predictor and directional planner integrated; setup in [the service guide](workstation.md) |
+| HIL simulator | Expo East Linux v0.1.0 package in the private HF dataset |
 
-The predictor checkpoint and small real-feature example are included in the local
-source tree. The private Expo East simulator and standalone GS collection remain
-separate HF assets. Paper-by-paper GS inventory reconciliation is not a release task. No source repository is made public,
-no third-party data is uploaded. License scope is documented in [licensing](licensing.md).
+GitHub and HF permissions are separate. All repositories remain private;
+creating a request in Discussions does not itself grant access or a TestFlight
+invitation. The website's public download links have not been enabled.
 
-## Checks before the first push
+## Outstanding items
 
-```bash
-python scripts/check_release.py --repo /path/to/repository --history
-python -m unittest discover -s tests -p 'test_*.py'
-```
+- **Private contact:** a maintainer email or another private reporting channel
+  has not been configured. Do not post sensitive details in Issues or Discussions.
+- **TestFlight:** invitation delivery depends on the maintainer providing an
+  eligible external-testing build; its availability has not been verified here.
+- **Training data:** the downloadable teacher/cache bundle is not published.
+  The included inference sample is not a training dataset. Use a prepared plan
+  as described in [training](training_data.md); no cluster-specific approval is needed.
+- **Hardware validation:** the Android packages passed build/signing checks,
+  but this packaging pass did not include fresh phone or aircraft testing.
+  Follow the [app safety procedure](../README.md#app-safety-notes), including simulator
+  testing before flight.
+- **UE distribution:** NanoGS source provenance and the final redistribution
+  scope still need resolution. The existing HF v0.1.0 archive was not rebuilt
+  after later source/notice changes; do not treat it as a build of current `main`.
 
-Run each App's documented tests/build and the UE release-tree checker as well.
-The scanner's 50 MiB threshold is a conservative project policy, not a statement
-of a hosting provider's limit. The optional history check inspects reachable Git
-blobs as well; checking files does not remove any old committed secrets/assets.
+Package tags, manifests and checksums identify the distributed binaries.
+Documentation updates do not replace packages or move their tags. Historical
+checks are recorded in [validation](validation.md); component license scopes
+are in [licensing](licensing.md).

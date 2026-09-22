@@ -35,13 +35,16 @@ validate an aircraft/firmware combination or start a flight.
 ### iOS TestFlight
 
 The iOS app is **not currently distributed on the App Store because of MFi-related
-authorization requirements** for the DJI accessory connection. Contact
-[@mistletoe235](https://github.com/mistletoe235) to request a **TestFlight invitation**;
-you can start with a [TestFlight invitation discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1). An invitation email is optional in the discussion. Comments are visible to everyone
-with repository access and may become public if the repository is opened later;
-only post an email if you accept that visibility, or request private follow-up.
-Never share account passwords or verification codes. No directly installable IPA
-is distributed here.
+authorization requirements** for its DJI accessory connection. Request access in
+the [TestFlight discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1)
+with your phone model, iOS version and aircraft/controller. The maintainer sends
+invitations when an eligible external-testing build is available; a request is
+not an invitation, and no installable IPA is provided here.
+
+An invitation email is optional. Discussion comments are visible to repository
+readers and may become public later. If you do not want to share an email there,
+omit it and wait for the maintainer to arrange a contact method; no dedicated
+private contact is configured yet. Never post passwords or verification codes.
 
 ## SDK support and version differences
 
@@ -72,10 +75,12 @@ Public apps exclude MNN/VLN and private model runtimes, not the route/cloud work
 1. Install the correct signed Android client from Releases, request iOS TestFlight access,
    or build from source with your own DJI key and signing settings.
    Read its `README.md` for setup, camera checks, survey region and height/overlap settings.
-2. Validate routes with the client's `docs/HIL_QUICKSTART.md` and the
-   [simulator guide](simulator.md). Xcode Mock is not DJI flight-controller HIL.
+2. Rehearse the complete workflow in the app's built-in simulator before real
+   flight. For an additional hardware-loop check, follow the client's
+   `docs/HIL_QUICKSTART.md` and the [simulator guide](simulator.md) with propellers
+   removed. Xcode Mock is not DJI flight-controller HIL.
 3. Deploy the [workstation service](workstation.md) once. Enter its phone-reachable
-   HTTP/HTTPS root URL and bearer token in the app; no phone-to-SSH connection is needed.
+   HTTPS root URL and bearer token in the app; no phone-to-SSH connection is needed.
 4. Create an upload session, check image FOV and takeoff ASL, upload survey-trigger
    frames or geotagged historical photos, then explicitly finalize reconstruction.
    Without takeoff ASL the service can reconstruct but does not export a flight mission.

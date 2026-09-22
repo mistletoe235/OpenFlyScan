@@ -1,7 +1,9 @@
 # Training data entry point
 
 The trainer consumes a prepared plan, not a folder of photographs alone.
-Keep these assets outside source Git:
+The downloadable teacher/cache bundle is not yet published. The repository's
+small NPZ example supports inference only; to train now, prepare your own data
+with the fields below. Keep these assets outside source Git:
 
 | Field | Required content |
 | --- | --- |
@@ -93,6 +95,5 @@ Only load training checkpoints from trusted sources.
 An optional `--mode preflight` checks the data plan without starting GPU training;
 it is not a required step.
 
-The downloadable teacher/cache bundle has not been published yet.
 The archived COLMAP reader is pinned in the dependency lock and included under
 `vendor/colmap`; its compatibility-path setup is documented in the dependency guide.
