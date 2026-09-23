@@ -6,6 +6,10 @@
 
 Zhongrui You, Zhen Li, Junli Liu, Zhigang Wang, Bin Zhao · arXiv, 2026
 
+![OpenFlyScan workflow: automatic capture, quality-guided reacquisition, and Gaussian reconstruction before and after reacquisition.](docs/images/workflow.webp)
+
+*Automatic capture → quality-guided reacquisition → improved Gaussian reconstruction.*
+
 OpenFlyScan connects mobile aerial capture, early regional GS quality prediction,
 targeted reacquisition, and reconstructed scenes for drone simulation. This is the
 main project entry point and the home of the workstation service and Quality
@@ -37,6 +41,10 @@ from [Hugging Face](https://huggingface.co/datasets/IPEC-COMMUNITY/openflyscan).
 See [release status](docs/release_readiness.md) for the current package and data scope.
 
 ## Download the apps
+
+![OpenFly Go Android V5 displaying five-direction survey strips over Expo West and capture settings.](docs/images/android-survey.webp)
+
+*Android V5: five-direction survey planning and accelerated route preview in Expo West.*
 
 Signed Android installation packages are mirrored in the
 [main project release](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922) and each app's release. The paired APKs are
