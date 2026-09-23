@@ -18,10 +18,11 @@ GitHub and HF permissions are separate. All repositories remain private;
 creating a request in Discussions does not itself grant access or a TestFlight
 invitation. The website's public download links have not been enabled.
 
+Questions and requests go through [GitHub Discussions](https://github.com/mistletoe235/OpenFlyScan/discussions).
+No separate maintainer email is required. Do not post sensitive details there.
+
 ## Outstanding items
 
-- **Private contact:** a maintainer email or another private reporting channel
-  has not been configured. Do not post sensitive details in Issues or Discussions.
 - **TestFlight:** invitation delivery depends on the maintainer providing an
   eligible external-testing build; its availability has not been verified here.
 - **Training data:** the downloadable teacher/cache bundle is not published.
