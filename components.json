@@ -2,11 +2,11 @@
   "project": "OpenFlyScan",
   "website": "https://openflyscan.github.io/",
   "assets": {
-    "repo_id": "IPEC-COMMUNITY/openflyscan",
+    "repo_id": "mistletoe235/openflyscan",
     "repo_type": "dataset",
-    "visibility": "private",
+    "visibility": "public",
     "simulator_directory": "HIL-simulator/linux/v0.1.0",
-    "status": "public access blocked by HF organization public-storage quota"
+    "status": "Expo East Linux v0.1.0 publicly available"
   },
   "components": {
     "quality_predictor": {

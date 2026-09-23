@@ -1,12 +1,7 @@
 # UE / HIL simulator
 
-**Download status:** the Expo East package is uploaded, but Hugging Face rejected
-public access because the organization's public-storage quota is exceeded.
-The archive is unchanged; public download is not available yet. The UE source
-linked below is public and can be built independently.
-
-Package location:
-[OpenFlyScan HF dataset](https://huggingface.co/datasets/IPEC-COMMUNITY/openflyscan/tree/main/HIL-simulator).
+Download the Expo East Linux runtime with its converted scene and HIL interface:
+[OpenFlyScan HF dataset](https://huggingface.co/datasets/mistletoe235/openflyscan/tree/main/HIL-simulator).
 
 Current package:
 `HIL-simulator/linux/v0.1.0/OpenFlyScan-HIL-ExpoEast-Linux-v0.1.0.tar.zst`.

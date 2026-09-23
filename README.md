@@ -26,7 +26,7 @@ Predictor training and evaluation code. Mobile clients and UE/HIL remain separat
 | **Workstation service** | Mobile uploads, Pi3X geometry, quality prediction and reacquisition missions | [Service guide](docs/workstation.md) |
 | **Mobile apps** | Android V4/V5 and iOS capture applications | [App repositories](docs/apps.md) |
 | **UE / HIL simulator** | GS scene rendering, PLY conversion and Android/DJI HIL | [Simulator](docs/simulator.md) |
-| **GS scenes and simulator packages** | Large downloadable assets, separate from source Git | [Download status](docs/simulator.md) |
+| **GS scenes and simulator packages** | Large downloadable assets, separate from source Git | [Download](https://huggingface.co/datasets/mistletoe235/openflyscan/tree/main/HIL-simulator) |
 | **Project website** | System overview and demonstrations | [OpenFlyScan](https://openflyscan.github.io/) |
 
 The source repositories are public:
@@ -36,9 +36,9 @@ The source repositories are public:
 [iOS](https://github.com/mistletoe235/OpenFlyGo-iOS), and
 [UE / HIL](https://github.com/mistletoe235/OpenFlyScan-UE).
 The trained Quality Predictor checkpoint (5.05 MB) and a small real-feature example
-are included here. The Expo East runtime is uploaded to Hugging Face, but public
-download is pending resolution of the organization's public-storage quota.
-The [UE source](https://github.com/mistletoe235/OpenFlyScan-UE) is available now.
+are included here. The Expo East runtime is publicly available on
+[Hugging Face](https://huggingface.co/datasets/mistletoe235/openflyscan/tree/main/HIL-simulator),
+alongside the [UE source](https://github.com/mistletoe235/OpenFlyScan-UE).
 See [release status](docs/release_readiness.md) for the current package and data scope.
 
 ## Download the apps
@@ -69,7 +69,7 @@ The release includes `SHA256SUMS`, package/source metadata and third-party notic
 It contains survey/capture clients, not the private VLN/model-inference builds.
 Configure your own reachable workstation URL and access code for cloud features;
 no production workstation credentials are included. The large UE/Expo East runtime
-remains in the [HF dataset](https://huggingface.co/datasets/IPEC-COMMUNITY/openflyscan/tree/main/HIL-simulator).
+remains in the [HF dataset](https://huggingface.co/datasets/mistletoe235/openflyscan/tree/main/HIL-simulator).
 
 ### iOS TestFlight
 

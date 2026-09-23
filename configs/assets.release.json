@@ -1,13 +1,13 @@
 {
   "schema": "openflyscan.release_assets.v1",
   "date": "2026-09-21",
-  "hf_repository": "IPEC-COMMUNITY/openflyscan",
+  "hf_repository": "mistletoe235/openflyscan",
   "hf_repository_type": "dataset",
   "release_scope": "GS reconstructions of all datasets used by the project; no separate model repository",
   "inventory_scope": "Existing GS candidates for upload; paper-by-paper reconciliation is not a release task",
   "simulator": {
     "path": "HIL-simulator/linux/v0.1.0/OpenFlyScan-HIL-ExpoEast-Linux-v0.1.0.tar.zst",
-    "status": "private upload recorded",
+    "status": "publicly available",
     "standalone_ply_included": false
   },
   "quality_predictor": {

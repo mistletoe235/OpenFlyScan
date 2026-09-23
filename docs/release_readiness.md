@@ -1,7 +1,8 @@
 # Release status
 
-Status as of September 23, 2026. All five source repositories are public; HF public
-download is blocked by the organization's storage quota. This page records availability, not an approval process for use or training.
+Status as of September 23, 2026. All five source repositories and the Expo East
+HF package are public. This page records availability, not an approval process
+for use or training.
 
 ## Available
 
@@ -12,9 +13,9 @@ download is blocked by the organization's storage quota. This page records avail
 | Android packages | Signed V4 `0.3.1-v4` and V5 `0.1.1-v5` APKs in main/app Releases, with checksums and notices |
 | iOS | Source and TestFlight request discussion available; no IPA distributed |
 | Workstation | Pi3X, shared predictor and directional planner integrated; setup in [the service guide](workstation.md) |
-| HIL simulator | Expo East Linux v0.1.0 uploaded; public download blocked by HF storage quota |
+| HIL simulator | Expo East Linux v0.1.0 publicly available on HF |
 
-The website links to source, Android downloads and simulator download status.
+The website links to source, Android downloads and simulator downloads.
 iOS installation still requires a TestFlight invitation; source access does not
 itself issue an invitation.
 
