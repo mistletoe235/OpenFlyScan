@@ -26,7 +26,7 @@ Predictor training and evaluation code. Mobile clients and UE/HIL remain separat
 | **Workstation service** | Mobile uploads, Pi3X geometry, quality prediction and reacquisition missions | [Service guide](docs/workstation.md) |
 | **Mobile apps** | Android V4/V5 and iOS capture applications | [App repositories](docs/apps.md) |
 | **UE / HIL simulator** | GS scene rendering, PLY conversion and Android/DJI HIL | [Simulator](docs/simulator.md) |
-| **GS scenes and simulator packages** | Large downloadable assets, separate from source Git | [HF dataset](https://huggingface.co/datasets/IPEC-COMMUNITY/openflyscan) |
+| **GS scenes and simulator packages** | Large downloadable assets, separate from source Git | [Download status](docs/simulator.md) |
 | **Project website** | System overview and demonstrations | [OpenFlyScan](https://openflyscan.github.io/) |
 
 The source repositories are public:
@@ -36,8 +36,9 @@ The source repositories are public:
 [iOS](https://github.com/mistletoe235/OpenFlyGo-iOS), and
 [UE / HIL](https://github.com/mistletoe235/OpenFlyScan-UE).
 The trained Quality Predictor checkpoint (5.05 MB) and a small real-feature example
-are included here. The scene-inclusive Expo East Linux HIL package is available
-from [Hugging Face](https://huggingface.co/datasets/IPEC-COMMUNITY/openflyscan).
+are included here. The Expo East runtime is uploaded to Hugging Face, but public
+download is pending resolution of the organization's public-storage quota.
+The [UE source](https://github.com/mistletoe235/OpenFlyScan-UE) is available now.
 See [release status](docs/release_readiness.md) for the current package and data scope.
 
 ## Download the apps

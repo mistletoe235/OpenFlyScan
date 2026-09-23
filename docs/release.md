@@ -3,7 +3,8 @@
 OpenFlyScan is the main entry point for the workstation service, Quality Predictor
 and training/evaluation code. Android V4, Android V5, iOS and UE are separate
 repositories under `mistletoe235`; their links are in [the README](../README.md).
-All five source repositories and the HF simulator dataset are public.
+All five source repositories are public. HF package access is awaiting resolution
+of the organization's public-storage quota.
 
 ## Publicly available
 
@@ -14,8 +15,9 @@ All five source repositories and the HF simulator dataset are public.
   in both the main and matching app releases. See [installation](apps.md).
 - **iOS:** source and a [TestFlight request discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1),
   not an installable IPA or a guaranteed available TestFlight build.
-- **HF dataset:** scene-inclusive Expo East Linux HIL runtime, scene license,
-  dependency notices and source-availability files. See [the simulator guide](simulator.md).
+
+The Expo East runtime and its license/source attachments are uploaded to HF,
+but public download is not available yet; see [download status](simulator.md).
 
 The head ships at `weights/quality_predictor.pt`; it does not require an HF
 download. The HF package contains converted scene resources, not standalone GS

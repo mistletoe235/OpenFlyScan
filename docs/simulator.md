@@ -1,6 +1,11 @@
 # UE / HIL simulator
 
-Download the scene-inclusive Linux package from the
+**Download status:** the Expo East package is uploaded, but Hugging Face rejected
+public access because the organization's public-storage quota is exceeded.
+The archive is unchanged; public download is not available yet. The UE source
+linked below is public and can be built independently.
+
+Package location:
 [OpenFlyScan HF dataset](https://huggingface.co/datasets/IPEC-COMMUNITY/openflyscan/tree/main/HIL-simulator).
 
 Current package:
@@ -20,5 +25,5 @@ The package also provides `convert_nanogs_ply.sh` for another GS scene.
 The independent UE 5.5 source is hosted in the
 [OpenFlyScan-UE repository](https://github.com/mistletoe235/OpenFlyScan-UE).
 The renderer and AirSim remain there rather than being duplicated in the main
-repository. The source and HF downloads are public. See the HF HIL guide for
-phone setup, network directions and bench precautions.
+repository. See its `Docs/HIL_QUICKSTART.md` for phone setup, network directions
+and bench precautions.
