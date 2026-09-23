@@ -28,7 +28,7 @@ Predictor training and evaluation code. Mobile clients and UE/HIL remain separat
 The source repositories are public:
 [main](https://github.com/mistletoe235/OpenFlyScan),
 [Android V4](https://github.com/mistletoe235/OpenFlyGo-Android-V4),
-[Android V5](https://github.com/mistletoe235/OpenFlyGo-Android-V5), and
+[Android V5](https://github.com/mistletoe235/OpenFlyGo-Android-V5),
 [iOS](https://github.com/mistletoe235/OpenFlyGo-iOS), and
 [UE / HIL](https://github.com/mistletoe235/OpenFlyScan-UE).
 The trained Quality Predictor checkpoint (5.05 MB) and a small real-feature example
