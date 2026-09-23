@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use OpenFlyScan in your research, please cite the paper below."
+title: "OpenFlyScan"
+type: software
+authors:
+  - name: "OpenFlyScan contributors"
+repository-code: "https://github.com/mistletoe235/OpenFlyScan"
+url: "https://openflyscan.github.io/"
+preferred-citation:
+  type: article
+  title: "OpenFlyScan: A Quality-Guided Aerial Reconstruction System for Consumer Drones"
+  authors:
+    - family-names: You
+      given-names: Zhongrui
+    - family-names: Li
+      given-names: Zhen
+    - family-names: Liu
+      given-names: Junli
+    - family-names: Wang
+      given-names: Zhigang
+    - family-names: Zhao
+      given-names: Bin
+  journal: arXiv
+  year: 2026
+  url: "https://arxiv.org/abs/2609.24253"
+  identifiers:
+    - type: other
+      value: "arXiv:2609.24253"

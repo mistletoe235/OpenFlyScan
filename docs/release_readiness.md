@@ -1,22 +1,22 @@
 # Release status
 
-Status as of September 22, 2026. This page describes the private preview, not a
-requirement to obtain project approval before running or training the code.
+Status as of September 23, 2026. All five source repositories and the HF dataset
+are public. This page records availability, not an approval process for use or training.
 
 ## Available
 
 | Component | Current status |
 | --- | --- |
-| Source | Main, Android V4/V5, iOS and UE pushed to private `mistletoe235` repositories |
+| Source | Main, Android V4/V5, iOS and UE public under `mistletoe235` |
 | Predictor | Trained head and eight-region inference example included in the main repository |
 | Android packages | Signed V4 `0.3.1-v4` and V5 `0.1.1-v5` APKs in main/app Releases, with checksums and notices |
 | iOS | Source and TestFlight request discussion available; no IPA distributed |
 | Workstation | Pi3X, shared predictor and directional planner integrated; setup in [the service guide](workstation.md) |
-| HIL simulator | Expo East Linux v0.1.0 package in the private HF dataset |
+| HIL simulator | Expo East Linux v0.1.0 package in the public HF dataset |
 
-GitHub and HF permissions are separate. All repositories remain private;
-creating a request in Discussions does not itself grant access or a TestFlight
-invitation. The website's public download links have not been enabled.
+The website links to source, Android downloads and the HF simulator package.
+iOS installation still requires a TestFlight invitation; source access does not
+itself issue an invitation.
 
 Questions and requests go through [GitHub Discussions](https://github.com/mistletoe235/OpenFlyScan/discussions).
 No separate maintainer email is required. Do not post sensitive details there.
@@ -32,9 +32,6 @@ No separate maintainer email is required. Do not post sensitive details there.
   but this packaging pass did not include fresh phone or aircraft testing.
   Follow the [app safety procedure](../README.md#app-safety-notes), including simulator
   testing before flight.
-- **UE distribution:** NanoGS source provenance and the final redistribution
-  scope still need resolution. The existing HF v0.1.0 archive was not rebuilt
-  after later source/notice changes; do not treat it as a build of current `main`.
 
 Package tags, manifests and checksums identify the distributed binaries.
 Documentation updates do not replace packages or move their tags. Historical

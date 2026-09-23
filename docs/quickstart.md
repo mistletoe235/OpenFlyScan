@@ -5,8 +5,8 @@ in one installation:
 
 | Goal | Start here | Additional requirements |
 | --- | --- | --- |
-| Install a capture app | [App downloads and setup](apps.md) | Compatible phone/aircraft; GitHub access |
-| Open the included Expo East scene | [HIL simulator](simulator.md) | Linux GPU machine; separate HF access |
+| Install a capture app | [App downloads and setup](apps.md) | Compatible phone/aircraft |
+| Open the included Expo East scene | [HIL simulator](simulator.md) | Linux GPU machine |
 | Try the trained head | CPU example below | Python 3.10+; no backbone download |
 | Process phone images | [Workstation setup](workstation.md) | GPU, patched GeoFF3D/Pi3X and backbone weights |
 | Train the head | [Training guide](training_data.md) | CUDA and a prepared image/teacher/feature plan |

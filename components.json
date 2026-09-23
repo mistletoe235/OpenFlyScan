@@ -4,7 +4,7 @@
   "assets": {
     "repo_id": "IPEC-COMMUNITY/openflyscan",
     "repo_type": "dataset",
-    "visibility": "private",
+    "visibility": "public",
     "simulator_directory": "HIL-simulator/linux/v0.1.0"
   },
   "components": {
@@ -33,28 +33,33 @@
   "repositories": {
     "main": {
       "url": "https://github.com/mistletoe235/OpenFlyScan",
-      "visibility": "private",
-      "status": "private source repository"
+      "visibility": "public",
+      "status": "public source repository"
     },
     "android_v4": {
       "url": "https://github.com/mistletoe235/OpenFlyGo-Android-V4",
-      "visibility": "private",
-      "status": "private source repository"
+      "visibility": "public",
+      "status": "public source repository"
     },
     "android_v5": {
       "url": "https://github.com/mistletoe235/OpenFlyGo-Android-V5",
-      "visibility": "private",
-      "status": "private source repository"
+      "visibility": "public",
+      "status": "public source repository"
     },
     "ios": {
       "url": "https://github.com/mistletoe235/OpenFlyGo-iOS",
-      "visibility": "private",
-      "status": "private source repository"
+      "visibility": "public",
+      "status": "public source repository"
     },
     "ue": {
       "url": "https://github.com/mistletoe235/OpenFlyScan-UE",
-      "visibility": "private",
-      "status": "private source repository"
+      "visibility": "public",
+      "status": "public source repository"
     }
+  },
+  "paper": {
+    "title": "OpenFlyScan: A Quality-Guided Aerial Reconstruction System for Consumer Drones",
+    "arxiv": "2609.24253",
+    "url": "https://arxiv.org/abs/2609.24253"
   }
 }

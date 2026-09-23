@@ -1,6 +1,10 @@
 # OpenFlyScan
 
-**Quality-guided aerial reconstruction with consumer drones.**
+[**Paper**](https://arxiv.org/abs/2609.24253) · [Project page](https://openflyscan.github.io/) · [Citation](#citation)
+
+**OpenFlyScan: A Quality-Guided Aerial Reconstruction System for Consumer Drones**
+
+Zhongrui You, Zhen Li, Junli Liu, Zhigang Wang, Bin Zhao · arXiv, 2026
 
 OpenFlyScan connects mobile aerial capture, early regional GS quality prediction,
 targeted reacquisition, and reconstructed scenes for drone simulation. This is the
@@ -21,23 +25,23 @@ Predictor training and evaluation code. Mobile clients and UE/HIL remain separat
 | **GS scenes and simulator packages** | Large downloadable assets, separate from source Git | [HF dataset](https://huggingface.co/datasets/IPEC-COMMUNITY/openflyscan) |
 | **Project website** | System overview and demonstrations | [OpenFlyScan](https://openflyscan.github.io/) |
 
-The HF dataset currently contains the Expo East Linux HIL simulator and is
-private. The trained Quality Predictor checkpoint (5.05 MB) and a small real-feature
-example are included in this repository; standalone GS scenes remain separate assets.
-All five source repositories are private and require collaborator access:
+The source repositories are public:
 [main](https://github.com/mistletoe235/OpenFlyScan),
 [Android V4](https://github.com/mistletoe235/OpenFlyGo-Android-V4),
-[Android V5](https://github.com/mistletoe235/OpenFlyGo-Android-V5),
+[Android V5](https://github.com/mistletoe235/OpenFlyGo-Android-V5), and
 [iOS](https://github.com/mistletoe235/OpenFlyGo-iOS), and
 [UE / HIL](https://github.com/mistletoe235/OpenFlyScan-UE).
-GitHub source access and access to the private HF dataset are managed separately.
+The trained Quality Predictor checkpoint (5.05 MB) and a small real-feature example
+are included here. The scene-inclusive Expo East Linux HIL package is available
+from [Hugging Face](https://huggingface.co/datasets/IPEC-COMMUNITY/openflyscan).
+See [release status](docs/release_readiness.md) for the current package and data scope.
 
 ## Download the apps
 
 Signed Android installation packages are mirrored in the
 [main project release](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922) and each app's release. The paired APKs are
-byte-identical; use either location, not both. These repositories and their release
-assets are currently private, so sign in with an authorized GitHub account.
+byte-identical; use either location, not both. Android APKs are publicly downloadable;
+iOS installation uses TestFlight invitations.
 
 | Client | Installation package | App release | Reference aircraft |
 | --- | --- | --- | --- |
@@ -68,9 +72,8 @@ invitations when an eligible external-testing build is available; a request is
 not an invitation, and no installable IPA is provided here.
 
 Use the discussion for requests and follow-up; no separate contact email is
-required. An invitation email is optional in the initial request. Comments are
-visible to repository readers and may become public later, so only include an
-email if you accept that visibility. Never post passwords or verification codes.
+required. An invitation email is optional in the initial request. Comments are public,
+so only include an email if you accept that visibility. Never post passwords or verification codes.
 
 ### App safety notes
 
@@ -187,3 +190,19 @@ inference example use [Apache-2.0](LICENSE). Third-party components retain their
 own terms. Official Pi3X backbone weights use CC BY-NC 4.0; the source license
 does not grant unrestricted commercial use of those weights. See
 [licensing scope](docs/licensing.md) and [third-party notices](THIRD_PARTY_NOTICES.md).
+
+## Citation
+
+If you use OpenFlyScan in your research, please cite our paper:
+
+```bibtex
+@misc{you2026openflyscanqualityguidedaerialreconstruction,
+  title = {OpenFlyScan: A Quality-Guided Aerial Reconstruction System for Consumer Drones},
+  author = {Zhongrui You and Zhen Li and Junli Liu and Zhigang Wang and Bin Zhao},
+  year = {2026},
+  eprint = {2609.24253},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO},
+  url = {https://arxiv.org/abs/2609.24253}
+}
+```

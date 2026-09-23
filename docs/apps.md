@@ -4,12 +4,12 @@ OpenFlyScan uses the OpenFly Go applications for capture and reconstruction feed
 
 | Application | Pinned SDK / reference aircraft | Mission schemas | Source link |
 | --- | --- | --- | --- |
-| Android V4 | DJI MSDK 4.16.4 / Mini 2 | 1–14 | [OpenFlyGo-Android-V4](https://github.com/mistletoe235/OpenFlyGo-Android-V4) (private) |
-| Android V5 | DJI MSDK 5.18.0 / Mini 4 Pro | 1–14 | [OpenFlyGo-Android-V5](https://github.com/mistletoe235/OpenFlyGo-Android-V5) (private) |
-| iOS | DJI MSDK 4.16.2 / Mini 2 | 1–14 | [OpenFlyGo-iOS](https://github.com/mistletoe235/OpenFlyGo-iOS) (private) |
+| Android V4 | DJI MSDK 4.16.4 / Mini 2 | 1–14 | [OpenFlyGo-Android-V4](https://github.com/mistletoe235/OpenFlyGo-Android-V4) |
+| Android V5 | DJI MSDK 5.18.0 / Mini 4 Pro | 1–14 | [OpenFlyGo-Android-V5](https://github.com/mistletoe235/OpenFlyGo-Android-V5) |
+| iOS | DJI MSDK 4.16.2 / Mini 2 | 1–14 | [OpenFlyGo-iOS](https://github.com/mistletoe235/OpenFlyGo-iOS) |
 
-The apps remain separate private repositories under `mistletoe235`; their source
-links are also registered in `components.json`. Access requires a GitHub invitation.
+The apps are separate public repositories under `mistletoe235`; their source
+links are also registered in `components.json`.
 These source links are separate from the signed-package release links below.
 Build keys and signing credentials must be supplied privately, never stored here.
 DJI HIL instructions are provided with the simulator; platform features are not
@@ -26,8 +26,8 @@ or viewing the route. See [the preparation report](preparation_20260921.md).
 Use the [main release](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922) or the matching app release:
 [Android V4](https://github.com/mistletoe235/OpenFlyGo-Android-V4/releases/tag/v0.3.1-v4),
 [Android V5](https://github.com/mistletoe235/OpenFlyGo-Android-V5/releases/tag/v0.1.1-v5).
-Both locations host the same signed APK bytes. Private repositories require access
-permission. Android packages target arm64 devices running Android 7.0 or later.
+Both locations host the same publicly downloadable signed APK bytes. Android
+packages target arm64 devices running Android 7.0 or later.
 Check the SDK/aircraft table before installing, preserve missions when updating,
 and do not bypass signature mismatches by deleting app data. Installation does not
 validate an aircraft/firmware combination or start a flight.
@@ -42,9 +42,8 @@ invitations when an eligible external-testing build is available; a request is
 not an invitation, and no installable IPA is provided here.
 
 Use the discussion for requests and follow-up; no separate contact email is
-required. An invitation email is optional in the initial request. Comments are
-visible to repository readers and may become public later, so only include an
-email if you accept that visibility. Never post passwords or verification codes.
+required. An invitation email is optional in the initial request. Comments are public,
+so only include an email if you accept that visibility. Never post passwords or verification codes.
 
 ## SDK support and version differences
 
