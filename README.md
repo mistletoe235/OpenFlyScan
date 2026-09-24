@@ -50,13 +50,13 @@ See [release status](docs/release_readiness.md) for the current package and data
 Signed Android installation packages are mirrored in the
 [main project release](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922) and each app's release. The paired APKs are
 byte-identical; use either location, not both. Android APKs are publicly downloadable;
-iOS installation uses TestFlight invitations.
+iOS installation uses the public TestFlight link below.
 
 | Client | Installation package | App release | Reference aircraft |
 | --- | --- | --- | --- |
 | Android V4 | [OpenFlyGo-Android-V4-0.3.1.apk](https://github.com/mistletoe235/OpenFlyScan/releases/download/preview-20260922/OpenFlyGo-Android-V4-0.3.1.apk) | [v0.3.1-v4](https://github.com/mistletoe235/OpenFlyGo-Android-V4/releases/tag/v0.3.1-v4) | Mini 2 |
 | Android V5 | [OpenFlyGo-Android-V5-0.1.1.apk](https://github.com/mistletoe235/OpenFlyScan/releases/download/preview-20260922/OpenFlyGo-Android-V5-0.1.1.apk) | [v0.1.1-v5](https://github.com/mistletoe235/OpenFlyGo-Android-V5/releases/tag/v0.1.1-v5) | Mini 4 Pro |
-| iOS | TestFlight by invitation | [Access information](https://github.com/mistletoe235/OpenFlyGo-iOS/releases/tag/testflight-20260922) | Mini 2 |
+| iOS | [Join TestFlight](https://testflight.apple.com/join/br5vTV92) | [Access information](https://github.com/mistletoe235/OpenFlyGo-iOS/releases/tag/testflight-20260922) | Mini 2 |
 
 Android requires a supported arm64 device running Android 7.0 or later. Download
 the matching V4/V5 APK, allow installation from the browser/file manager if prompted,
@@ -73,16 +73,16 @@ remains in the [HF dataset](https://huggingface.co/datasets/mistletoe235/openfly
 
 ### iOS TestFlight
 
-The iOS app is **not currently distributed on the App Store because of MFi-related
-authorization requirements** for its DJI accessory connection. Request access in
-the [TestFlight discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1)
-with your phone model, iOS version and aircraft/controller. The maintainer sends
-invitations when an eligible external-testing build is available; a request is
-not an invitation, and no installable IPA is provided here.
+[Join the iOS beta on TestFlight](https://testflight.apple.com/join/br5vTV92)
 
-Use the discussion for requests and follow-up; no separate contact email is
-required. An invitation email is optional in the initial request. Comments are public,
-so only include an email if you accept that visibility. Never post passwords or verification codes.
+Open the link on your iPhone and follow the instructions to install TestFlight
+and join the beta. No GitHub access request is needed. Availability depends on
+the testing capacity and device requirements shown on TestFlight.
+
+The app is not currently listed on the App Store. Check aircraft compatibility
+and the flight-safety notes before use. For help, use the
+[project discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1);
+do not post passwords or verification codes.
 
 ### App safety notes
 
