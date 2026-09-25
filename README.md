@@ -48,14 +48,14 @@ See [release status](docs/release_readiness.md) for the current package and data
 *Android V5: five-direction survey planning and accelerated route preview in Expo West.*
 
 Signed Android installation packages are mirrored in the
-[main project release](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922) and each app's release. The paired APKs are
+[main project release](https://github.com/mistletoe235/OpenFlyScan/releases/tag/mobile-20260925) and each app's release. The paired APKs are
 byte-identical; use either location, not both. Android APKs are publicly downloadable;
 iOS installation uses the public TestFlight link below.
 
 | Client | Installation package | App release | Reference aircraft |
 | --- | --- | --- | --- |
-| Android V4 | [OpenFlyGo-Android-V4-0.3.1.apk](https://github.com/mistletoe235/OpenFlyScan/releases/download/preview-20260922/OpenFlyGo-Android-V4-0.3.1.apk) | [v0.3.1-v4](https://github.com/mistletoe235/OpenFlyGo-Android-V4/releases/tag/v0.3.1-v4) | Mini 2 |
-| Android V5 | [OpenFlyGo-Android-V5-0.1.1.apk](https://github.com/mistletoe235/OpenFlyScan/releases/download/preview-20260922/OpenFlyGo-Android-V5-0.1.1.apk) | [v0.1.1-v5](https://github.com/mistletoe235/OpenFlyGo-Android-V5/releases/tag/v0.1.1-v5) | Mini 4 Pro |
+| Android V4 | [OpenFlyGo-Android-V4-0.3.5.apk](https://github.com/mistletoe235/OpenFlyScan/releases/download/mobile-20260925/OpenFlyGo-Android-V4-0.3.5.apk) | [v0.3.5-v4](https://github.com/mistletoe235/OpenFlyGo-Android-V4/releases/tag/v0.3.5-v4) | Mini 2 |
+| Android V5 | [OpenFlyGo-Android-V5-0.1.7.apk](https://github.com/mistletoe235/OpenFlyScan/releases/download/mobile-20260925/OpenFlyGo-Android-V5-0.1.7.apk) | [v0.1.7-v5](https://github.com/mistletoe235/OpenFlyGo-Android-V5/releases/tag/v0.1.7-v5) | Mini 4 Pro |
 | iOS | [Join TestFlight](https://testflight.apple.com/join/br5vTV92) | [Access information](https://github.com/mistletoe235/OpenFlyGo-iOS/releases/tag/testflight-20260922) | Mini 2 |
 
 Android requires a supported arm64 device running Android 7.0 or later. Download
@@ -65,7 +65,7 @@ upgrades. Back up missions before updating; do not uninstall or erase app data t
 work around a signature mismatch or downgrade. SDK-supported aircraft are not all
 project-validated. See [client compatibility and setup](docs/apps.md).
 
-The release includes `SHA256SUMS`, package/source metadata and third-party notices.
+The release includes package/source metadata and third-party notices.
 It contains survey/capture clients, not the private VLN/model-inference builds.
 Configure your own reachable workstation URL and access code for cloud features;
 no production workstation credentials are included. The large UE/Expo East runtime

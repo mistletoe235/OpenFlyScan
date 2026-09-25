@@ -23,9 +23,9 @@ or viewing the route. See [the preparation report](preparation_20260921.md).
 
 ## Installation packages
 
-Use the [main release](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922) or the matching app release:
-[Android V4](https://github.com/mistletoe235/OpenFlyGo-Android-V4/releases/tag/v0.3.1-v4),
-[Android V5](https://github.com/mistletoe235/OpenFlyGo-Android-V5/releases/tag/v0.1.1-v5).
+Use the [main release](https://github.com/mistletoe235/OpenFlyScan/releases/tag/mobile-20260925) or the matching app release:
+[Android V4](https://github.com/mistletoe235/OpenFlyGo-Android-V4/releases/tag/v0.3.5-v4),
+[Android V5](https://github.com/mistletoe235/OpenFlyGo-Android-V5/releases/tag/v0.1.7-v5).
 Both locations host the same publicly downloadable signed APK bytes. Android
 packages target arm64 devices running Android 7.0 or later.
 Check the SDK/aircraft table before installing, preserve missions when updating,
